@@ -32,6 +32,8 @@ jobs:
         run: mvn clean install
   #Test's job
   tests:
+    #Depends on test's job
+    needs: mvn_build
     name: Unit tests
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
