@@ -4,5 +4,5 @@ import net.dg.springrestweather.model.WeatherData;
 
 public interface WeatherService {
 
-    WeatherData getCurrenWeather();
+  WeatherData getCurrenWeather();
 }

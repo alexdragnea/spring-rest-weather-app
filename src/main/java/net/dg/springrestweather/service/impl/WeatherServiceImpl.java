@@ -18,8 +18,11 @@ public class WeatherServiceImpl implements WeatherService {
   @Value("${weather.apiKey}")
   String apiKey;
 
-  @Value("${weather.latitude}")
-  String latitude;
+       @Value("${weather.latitude}")
+        String latitude;
+
+
+
 
   @Value("${weather.longitude}")
   String longitude;
@@ -27,7 +30,7 @@ public class WeatherServiceImpl implements WeatherService {
   @Autowired WeatherServiceClient weatherServiceClient;
 
   public WeatherData getCurrenWeather() {
-      logger.info(
+    logger.info(
         "Asking current weather to provider for coordinates [lat = {}, lon = {}]",
         latitude,
         longitude);

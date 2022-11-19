@@ -1,7 +1,5 @@
-
 package net.dg.springrestweather.model;
 
-import jdk.jfr.DataAmount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,11 +7,10 @@ import lombok.Data;
 @Data
 public class Main {
 
-    public Double temp;
-    public Double feelsLike;
-    public Double tempMin;
-    public Double tempMax;
-    public Integer pressure;
-    public Integer humidity;
-
+  public Double temp;
+  public Double feelsLike;
+  public Double tempMin;
+  public Double tempMax;
+  public Integer pressure;
+  public Integer humidity;
 }
