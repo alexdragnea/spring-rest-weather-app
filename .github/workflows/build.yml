@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Spring Rest Weather Pipeline
 on:
   workflow_dispatch:
   #Trigger the workflow on push from the main branch
