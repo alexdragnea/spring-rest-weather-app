@@ -7,7 +7,7 @@ on:
     types: [ opened, synchronize, reopened ]
 jobs:
   mvn_build:
-    name: Maven Build Goal
+    name: Maven Build
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
     #Job's steps

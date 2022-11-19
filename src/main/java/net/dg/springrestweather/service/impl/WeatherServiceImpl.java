@@ -18,11 +18,8 @@ public class WeatherServiceImpl implements WeatherService {
   @Value("${weather.apiKey}")
   String apiKey;
 
-       @Value("${weather.latitude}")
-        String latitude;
-
-
-
+  @Value("${weather.latitude}")
+  String latitude;
 
   @Value("${weather.longitude}")
   String longitude;
