@@ -94,21 +94,22 @@
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
+                                    <excludes>
+                                        <exclude>net.dg.springrestweather.model.*</exclude>
+                                        <exclude>net.dg.springrestweather.SpringRestWeatherApplication</exclude>
+                                    </excludes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.00</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.0</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                     </limits>
-                                    <!--                                    <excludes>-->
-                                    <!--                                        <exclude>com.abc.ClassName</exclude>-->
-                                    <!--                                    </excludes>-->
                                 </rule>
                             </rules>
                         </configuration>
