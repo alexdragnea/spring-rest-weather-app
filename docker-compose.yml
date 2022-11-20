@@ -1,11 +1,10 @@
-version: '3.9'
+version: '3'
 services:
-  app:
-    build:
-      context: .
-      target: execution
-    container_name: app
+  web:
+    container_name: webapp-frontend
+    build: .
     ports:
       - "8181:8181"
-volumes:
-  db-data:
+  redis:
+    container_name: redis-backend
+    image: "redis:alpine"
