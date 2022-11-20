@@ -9,5 +9,5 @@ FROM base AS build
 RUN ["mvn", "install", "-Dmaven.test.skip=true"]
 
 FROM openjdk:17-jdk-alpine AS execution
-COPY --from=build /app/target/login-registration-backend.jar login-registration-backend.jar
+COPY --from=build /app/target/login-registration-backend.jar /app/target/login-registration-backend.jar
 ENTRYPOINT ["java","-jar","login-registration-backend.jar"]
