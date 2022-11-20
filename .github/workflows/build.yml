@@ -6,6 +6,12 @@ on:
   pull_request:
     types: [ opened, synchronize, reopened ]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run tests
+        run: docker-compose -f docker-compose-test.yml up --abort-on-container-exit --exit-code-from app
   #Maven Build Job
   mvn_build:
     name: Build
