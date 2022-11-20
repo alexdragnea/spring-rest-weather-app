@@ -23,7 +23,6 @@ jobs:
           # Target URL
           target: "http://localhost:8181"
           fail_action: false
-          token: $
           issue_title: Security Tests
 
   #Maven Build Job
