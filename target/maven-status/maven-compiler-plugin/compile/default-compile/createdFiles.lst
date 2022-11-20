@@ -1,0 +1,12 @@
+net\dg\springrestweather\model\Coord.class
+net\dg\springrestweather\service\WeatherService.class
+net\dg\springrestweather\service\impl\WeatherServiceImpl.class
+net\dg\springrestweather\SpringRestWeatherApplication.class
+net\dg\springrestweather\model\WeatherData.class
+net\dg\springrestweather\rest\WeatherController.class
+net\dg\springrestweather\client\WeatherServiceClient.class
+net\dg\springrestweather\model\Weather.class
+net\dg\springrestweather\model\Main.class
+net\dg\springrestweather\model\Clouds.class
+net\dg\springrestweather\model\Wind.class
+net\dg\springrestweather\model\Sys.class
