@@ -16,7 +16,7 @@ jobs:
       - name: Building Docker
         run: docker-compose build
       - name: Launching the app
-        run: docker-compose up --detach
+        run: docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
       - name: OWASP ZAP
         uses: zaproxy/action-baseline@v0.4.0
