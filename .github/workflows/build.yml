@@ -8,15 +8,16 @@ on:
 jobs:
   owasp:
     name: OWASP ZAP SCANS
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-           ref: Add_dockerfile
-      - name: Building Docker Node-Goat Image
-        run: docker-compose build
-      - name: Launching the app
-        run: docker-compose up --detach
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            ref: master
+        - name: Building Docker Node-Goat Image
+          run: docker-compose build
+        - name: Launching the app
+          run: docker-compose up --detach
 
     - name: OWASP ZAP Baseline Scan
       uses: zaproxy/action-baseline@v0.7.0
