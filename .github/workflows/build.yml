@@ -8,22 +8,26 @@ on:
 jobs:
   owasp:
     name: OWASP ZAP SCANS
-    runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Building Docker Node-Goat Image
-        run: docker-compose build
-      - name: Launching the app
-        run: docker-compose up --detach
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            ref: master
+        - name: Building Docker Node-Goat Image
+          run: docker-compose build
+        - name: Launching the app
+          run: docker-compose up --detach
 
-      - name: OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.7.0
-        with:
-          # Target URL
-          target: "http://localhost:8181"
-          fail_action: false
-          issue_title: Security Tests
+        - name: OWASP ZAP
+          uses: zaproxy/action-baseline@v0.4.0
+          with:
+            # Target URL
+            target: "http://localhost:8181"
+            fail_action: false
+            token: $
+            issue_title: Security Tests
+
 
   #Maven Build Job
   mvn_build:
