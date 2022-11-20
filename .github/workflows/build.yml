@@ -11,18 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: Add_dockerfile
       - name: Building Docker Node-Goat Image
         run: docker-compose build
       - name: Launching the app
         run: docker-compose up --detach
 
-      - name: OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.7.0
-        with:
-          target: 'https://www.zaproxy.org/'
-          issue_title: Security Tests
+      - name: OWASP ZAP
+         uses: zaproxy/action-baseline@v0.4.0
+         with:
+        # Target URL
+           target: "http://localhost:4000"
+            fail_action: false
+            token: $
+           issue_title: Security Tests
 
 
   #Maven Build Job
