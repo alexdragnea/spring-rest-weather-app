@@ -1,4 +1,4 @@
-FROM maven:3.8.5-openjdk-17 AS base
+FROM maven:3.8.5-openjdk-11 AS base
 WORKDIR /app
 COPY . .
 
@@ -8,6 +8,6 @@ CMD mvn test
 FROM base AS build
 RUN ["mvn", "install", "-Dmaven.test.skip=true"]
 
-FROM openjdk:17-jdk-alpine AS execution
+FROM openjdk:11-jdk-alpine AS execution
 COPY --from=build /app/target/spring-rest-weather.jar spring-rest-weather.jar
 ENTRYPOINT ["java","-jar","spring-rest-weather.jar"]
