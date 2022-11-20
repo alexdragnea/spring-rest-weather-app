@@ -9,7 +9,7 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 # Package stage
 #
-FROM openjdk:11-jdk-alpine
+FROM adoptopenjdk/openjdk11:alpine-jre
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 COPY --from=build /home/app/target/war_name.jar app.jar
