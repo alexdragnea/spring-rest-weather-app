@@ -19,11 +19,11 @@ jobs:
         - name: Launching the app
           run: docker-compose up --detach
 
-    - name: OWASP ZAP Baseline Scan
-      uses: zaproxy/action-baseline@v0.7.0
-        with:
-          target: 'https://www.zaproxy.org/'
-          issue_title: Security Tests
+        - name: OWASP ZAP Baseline Scan
+          uses: zaproxy/action-baseline@v0.7.0
+          with:
+             target: 'https://www.zaproxy.org/'
+             issue_title: Security Tests
 
 
   #Maven Build Job
