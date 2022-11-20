@@ -5,6 +5,3 @@ services:
     build: .
     ports:
       - "8181:8181"
-  redis:
-    container_name: redis-backend
-    image: "redis:alpine"
