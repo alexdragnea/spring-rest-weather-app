@@ -20,7 +20,7 @@ jobs:
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.7.0
         with:
-          target: 'localhost:8181'
+          target: 'http://localhost:8181'
           issue_title: Security Tests
   #Maven Build Job
   mvn_build:
