@@ -107,13 +107,13 @@
                                         </limit>
                                     </limits>
                                     <excludes>
-                                        <exclude>net/dg/springrestweather/model/Clouds.class</exclude>
-                                        <exclude>net/dg/springrestweather/model/Coord.class</exclude>
-                                        <exclude>net/dg/springrestweather/model/Main.class</exclude>
-                                        <exclude>net/dg/springrestweather/model/Sys.class</exclude>
-                                        <exclude>net/dg/springrestweather/model/Weather.class</exclude>
-                                        <exclude>net/dg/springrestweather/model/WeatherData.class</exclude>
-                                        <exclude>net/dg/springrestweather/model/Wind.class</exclude>
+                                        <exclude>net/dg/springrestweather/Cloud*</exclude>
+                                        <exclude>net/dg/springrestweather/Coord*</exclude>
+                                        <exclude>net/dg/springrestweather/Main*</exclude>
+                                        <exclude>net/dg/springrestweather/Sys*</exclude>
+                                        <exclude>net/dg/springrestweather/Weather*</exclude>
+                                        <exclude>net/dg/springrestweather/WeatherData*</exclude>
+                                        <exclude>net/dg/springrestweather/Wind*</exclude>
                                         <exclude>**/config/*</exclude>
                                     </excludes>
                                 </rule>
