@@ -25,6 +25,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.junit</groupId>
+            <artifactId>junit5-engine</artifactId>
+            <version>5.0.0-ALPHA</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
@@ -93,17 +98,17 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.00</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.0</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                     </limits>
-                                    <!--                                    <excludes>-->
-                                    <!--                                        <exclude>com.abc.ClassName</exclude>-->
-                                    <!--                                    </excludes>-->
+                                    <excludes>
+                                        <exclude>net.dg.springrestweather.model</exclude>
+                                    </excludes>
                                 </rule>
                             </rules>
                         </configuration>
