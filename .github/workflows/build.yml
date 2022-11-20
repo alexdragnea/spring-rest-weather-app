@@ -97,7 +97,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Building Docker Node-Goat Image
+      - name: Building Docker Image
         run: docker-compose build
       - name: Launching the app
         run: docker-compose up --detach
