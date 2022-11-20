@@ -20,10 +20,10 @@ jobs:
          uses: zaproxy/action-baseline@v0.4.0
          with:
         # Target URL
-           target: "http://localhost:4000"
+            target: "http://localhost:4000"
             fail_action: false
             token: $
-           issue_title: Security Tests
+            issue_title: Security Tests
 
 
   #Maven Build Job
