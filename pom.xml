@@ -78,49 +78,54 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
+                <version>0.8.4</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>check</id>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+
+                    </execution>
+
+                    <execution>
+                        <id>default-check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
-                        <configuration>
-                            <rules>
-                                <rule>
-                                    <element>CLASS</element>
-                                    <limits>
-                                        <limit>
-                                            <counter>LINE</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>0.5</minimum>
-                                        </limit>
-                                        <limit>
-                                            <counter>BRANCH</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>0.5</minimum>
-                                        </limit>
-                                    </limits>
-                                    <excludes>
-                                        <exclude>net/dg/springrestweather/model/Cloud*</exclude>
-                                        <exclude>net/dg/springrestweather/model/Coord*</exclude>
-                                        <exclude>net/dg/springrestweather/model/Main*</exclude>
-                                        <exclude>net/dg/springrestweather/model/Sys*</exclude>
-                                        <exclude>net/dg/springrestweather/model/Weather*</exclude>
-                                        <exclude>net/dg/springrestweather/model/WeatherData*</exclude>
-                                        <exclude>net/dg/springrestweather/model/Wind*</exclude>
-                                        <exclude>**/config/*</exclude>
-                                    </excludes>
-                                </rule>
-                            </rules>
-                        </configuration>
+
                     </execution>
                 </executions>
+                <configuration>
+                    <dataFile>target/jacoco.exec</dataFile>
+                    <!-- Sets the output directory for the code coverage report. -->
+                    <outputDirectory>target/jacoco-ut</outputDirectory>
+                    <rules>
+                        <rule implementation="org.jacoco.maven.RuleConfiguration">
+                            <element>PACKAGE</element>
+                            <limits>
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>COMPLEXITY</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.5</minimum>
+                                </limit>
+                            </limits>
+                        </rule>
+                    </rules>
+                    <excludes>
+                        <exclude>net/dg/springrestweather/model/**/*</exclude>
+                    </excludes>
+                    <systemPropertyVariables>
+                        <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.spotify.fmt</groupId>
