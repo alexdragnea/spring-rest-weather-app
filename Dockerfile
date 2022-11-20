@@ -8,6 +8,6 @@ CMD mvn test
 FROM base AS build
 RUN ["mvn", "install", "-Dmaven.test.skip=true"]
 
-FROM openjdk:11-jdk-alpine AS execution
+FROM adoptopenjdk/openjdk11:alpine-jre AS execution
 COPY --from=build /app/target/spring-rest-weather.jar spring-rest-weather.jar
 ENTRYPOINT ["java","-jar","spring-rest-weather.jar"]
