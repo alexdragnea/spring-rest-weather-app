@@ -8,19 +8,20 @@ on:
 jobs:
   owasp:
     name: OWASP ZAP SCANS
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Building Docker Node-Goat Image
-        run: docker-compose build
-      - name: Launching the app
-        run: docker-compose up --detach
+      runs-on: ubuntu-latest
 
-      - name: OWASP ZAP
-         uses: zaproxy/action-baseline@v0.4.0
-         with:
-        # Target URL
-            target: "http://localhost:4000"
+      steps:
+        - uses: actions/checkout@v1
+        - name: Building Docker Node-Goat Image
+          run: docker-compose build
+        - name: Launching the app
+          run: docker-compose up --detach
+
+        - name: OWASP ZAP
+          uses: zaproxy/action-baseline@v0.4.0
+          with:
+            # Target URL
+            target: "http://localhost:8181"
             fail_action: false
             token: $
             issue_title: Security Tests
