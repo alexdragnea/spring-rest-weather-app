@@ -7,9 +7,8 @@ on:
     types: [ opened, synchronize, reopened ]
 jobs:
   owasp:
-  name: OWASP ZAP SCANS
+    name: OWASP ZAP SCANS
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
