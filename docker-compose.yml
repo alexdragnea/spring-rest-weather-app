@@ -1,8 +1,11 @@
+version: '3.9'
 services:
-  petclinic:
+  app:
     build:
       context: .
-      dockerfile: Dockerfile
-      target: development
+      target: execution
+    container_name: app
     ports:
-      - 8181:8181
+      - "8181:8181"
+volumes:
+  db-data:

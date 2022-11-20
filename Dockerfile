@@ -1,18 +1,13 @@
-FROM eclipse-temurin:17-jdk-jammy as base
+FROM maven:3.8.5-openjdk-17 AS base
 WORKDIR /app
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
-COPY src ./src
+COPY . .
 
-FROM base as development
-CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.profiles=mysql", "-Dspring-boot.run.jvmArguments='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'"]
+FROM base AS test
+CMD mvn test
 
-FROM base as build
-RUN ./mvnw package
+FROM base AS build
+RUN ["mvn", "install", "-Dmaven.test.skip=true"]
 
-
-FROM eclipse-temurin:17-jre-jammy as production
-EXPOSE 8080
-COPY --from=build /app/target/spring-petclinic-*.jar /spring-petclinic.jar
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/spring-petclinic.jar"]
+FROM openjdk:17-jdk-alpine AS execution
+COPY --from=build /app/target/login-registration-backend.jar login-registration-backend.jar
+ENTRYPOINT ["java","-jar","login-registration-backend.jar"]
