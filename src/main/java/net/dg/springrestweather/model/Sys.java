@@ -2,11 +2,9 @@ package net.dg.springrestweather.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 
 @AllArgsConstructor
 @Builder
-@Data
 public class Sys {
 
   public Integer type;
