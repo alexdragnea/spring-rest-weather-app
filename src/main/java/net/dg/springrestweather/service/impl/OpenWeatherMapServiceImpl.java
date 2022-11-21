@@ -2,7 +2,6 @@ package net.dg.springrestweather.service.impl;
 
 import net.dg.springrestweather.client.OpenWeatherMapClient;
 import net.dg.springrestweather.model.WeatherData;
-import net.dg.springrestweather.rest.OpenWeatherMapController;
 import net.dg.springrestweather.service.OpenWeatherMapService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
 
-  private static final Logger logger = LoggerFactory.getLogger(OpenWeatherMapController.class);
+  private static final Logger logger = LoggerFactory.getLogger(OpenWeatherMapServiceImpl.class);
 
   @Value("${weather.apiKey}")
   String apiKey;

@@ -18,6 +18,9 @@
         <spring-cloud.version>2021.0.5</spring-cloud.version>
         <sonar.organization>alexdragnea</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.coverage.exclusions>
+            **/test/**/*
+        </sonar.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
@@ -94,6 +97,10 @@
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
+                                    <excludes>
+                                        <exclude>net.dg.springrestweather.model.*</exclude>
+                                        <exclude>net.dg.springrestweather.SpringRestWeatherApplication</exclude>
+                                    </excludes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
@@ -106,12 +113,16 @@
                                             <minimum>0.5</minimum>
                                         </limit>
                                     </limits>
-                                    <excludes>
-                                        <exclude>net.dg.springrestweather.model</exclude>
-                                    </excludes>
                                 </rule>
                             </rules>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
