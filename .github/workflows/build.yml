@@ -3,62 +3,7 @@ on:
   pull_request:
     types: [ opened, synchronize, reopened ]
 jobs:
-  #Maven Build Job
-  mvn_build:
-    name: Build
-    #Run on Ubuntu using the latest version
-    runs-on: ubuntu-latest
-    #Job's steps
-    steps:
-      #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
-      - uses: actions/checkout@v1
-      #Set up JDK 11
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11'
-      #Set up Maven cache
-      - name: Cache Maven packages
-        #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      #Run mvn clean install
-      - name: Run Tests
-        run: mvn clean install
-  #Test's job
-  tests:
-    #Depends on test's job
-    needs: mvn_build
-    name: Unit tests
-    #Run on Ubuntu using the latest version
-    runs-on: ubuntu-latest
-    #Job's steps
-    steps:
-      #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
-      - uses: actions/checkout@v1
-      #Set up JDK 11
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11'
-      #Set up Maven cache
-      - name: Cache Maven packages
-        #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      #Run Tests
-      - name: Run Tests
-        run: mvn -B test
-  #Sonar Job
   sonar:
-    #Depends on test's job
-    needs: tests
     name: SonarCloud Analise
     runs-on: ubuntu-latest
     steps:
@@ -85,7 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alexdragnea_spring-rest-weather-app -Dsonar.coverage.jacoco.xmlReportPaths=jacoco.xml
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alexdragnea_spring-rest-weather-app -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   owasp:
     #Depends on sonar job
     needs: sonar
