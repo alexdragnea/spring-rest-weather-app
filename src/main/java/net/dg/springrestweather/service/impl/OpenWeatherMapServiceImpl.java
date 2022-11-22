@@ -32,4 +32,10 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
         longitude);
     return openWeatherMapClient.currentWeather(latitude, longitude, apiKey);
   }
+
+  public WeatherData getWeatherByCity(String city) {
+    logger.info("Asking current weather to provider for [city = {}]");
+
+    return openWeatherMapClient.getWeatherByCity(city, apiKey);
+  }
 }

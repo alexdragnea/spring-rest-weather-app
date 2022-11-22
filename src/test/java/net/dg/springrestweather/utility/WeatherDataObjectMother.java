@@ -12,15 +12,15 @@ public class WeatherDataObjectMother {
         .weather(buildWeatherList())
         .base(TestConstants.TEST)
         .main(buildMain())
-        .visibility(10)
+        .visibility(TestConstants.DATA_INTEGER)
         .wind(buildWind())
         .clouds(buildClouds())
-        .dt(10)
+        .dt(TestConstants.DATA_INTEGER)
         .sys(buildSys())
-        .timezone(10)
-        .id(1)
-        .name("test")
-        .cod(10)
+        .timezone(TestConstants.DATA_INTEGER)
+        .id(TestConstants.ID)
+        .name(TestConstants.CITY)
+        .cod(TestConstants.DATA_INTEGER)
         .build();
   }
 
@@ -64,7 +64,7 @@ public class WeatherDataObjectMother {
   public static Sys buildSys() {
     return Sys.builder()
         .type(TestConstants.DATA_INTEGER)
-        .id(TestConstants.DATA_INTEGER)
+        .id(TestConstants.ID)
         .country(TestConstants.TEST)
         .sunrise(TestConstants.DATA_INTEGER)
         .sunset(TestConstants.DATA_INTEGER)

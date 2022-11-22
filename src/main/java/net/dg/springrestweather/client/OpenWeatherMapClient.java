@@ -13,4 +13,8 @@ public interface OpenWeatherMapClient {
       @RequestParam("lat") String lat,
       @RequestParam("lon") String lon,
       @RequestParam("appid") String apiKey);
+
+  @GetMapping(value = "/weather")
+  WeatherData getWeatherByCity(
+      @RequestParam("q") String city, @RequestParam("appid") String apiKey);
 }
