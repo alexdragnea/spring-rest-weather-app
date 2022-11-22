@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import net.dg.springrestweather.client.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
@@ -20,8 +21,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 class OpenWeatherMapControllerTest {
 
   @Autowired MockMvc mockMvc;
-  @Autowired OpenWeatherMapController openWeatherMapController;
 
+  @MockBean OpenWeatherMapClient openWeatherMapClient;
   @MockBean OpenWeatherMapServiceImpl openWeatherService;
 
   @Test
