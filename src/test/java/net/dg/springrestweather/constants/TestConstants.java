@@ -12,6 +12,7 @@ public class TestConstants {
   public static final String CITY = "Brasov";
 
   // Constants for endpoints
+  public static final String BASE_ENDPOINT_PATH = "/weather";
   public static final String GET_CURRENT_WEATHER = "/api/current";
   public static final String GET_WEATHER_BASED_ON_CITY = "/api?city=brasov";
   public static final String CITY_REQUEST_PARAM = "city";
