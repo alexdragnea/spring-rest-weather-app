@@ -1,10 +1,10 @@
 package net.dg.springrestweather.model;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @NoArgsConstructor
+@Setter
 public class Clouds {
 
   public Integer all;
