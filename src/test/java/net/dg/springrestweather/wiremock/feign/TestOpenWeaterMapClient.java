@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class TestOpenWeaterMapClient {
+class TestOpenWeaterMapClient {
   private static WireMockServer wireMockServer;
 
   @Autowired private MockMvc mockMvc;
