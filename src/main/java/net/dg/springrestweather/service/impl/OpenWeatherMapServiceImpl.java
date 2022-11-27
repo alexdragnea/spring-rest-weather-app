@@ -3,7 +3,6 @@ package net.dg.springrestweather.service.impl;
 import net.dg.springrestweather.client.OpenWeatherMapClient;
 import net.dg.springrestweather.model.WeatherData;
 import net.dg.springrestweather.service.OpenWeatherMapService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,11 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   @Value("${weather.longitude}")
   String longitude;
 
-  @Autowired OpenWeatherMapClient openWeatherMapClient;
+  OpenWeatherMapClient openWeatherMapClient;
+
+  public OpenWeatherMapServiceImpl(OpenWeatherMapClient openWeatherMapClient) {
+    this.openWeatherMapClient = openWeatherMapClient;
+  }
 
   public WeatherData getCurrenWeather() {
     return openWeatherMapClient.currentWeather(latitude, longitude, apiKey);
