@@ -16,4 +16,18 @@ public class TestConstants {
   public static final String GET_CURRENT_WEATHER = "/api/current";
   public static final String GET_WEATHER_BASED_ON_CITY = "/api?city=brasov";
   public static final String CITY_REQUEST_PARAM = "city";
+
+  // Archunit
+
+  public static final String BASE_PACKAGE = "net.dg.springrestweather";
+  public static final String SERVICE_PACKAGE = "..service..";
+  public static final String SERVICE_IMPL_PACKAGE = "..service..";
+  public static final String CONTROLLER_PACKAGE = "..rest..";
+  public static final String CLIENT_PACKAGE = "..client..";
+  public static final String CONFIG_PACKAGE = "..config..";
+  public static final String CONTROLLER_LAYER = "Controller";
+  public static final String SERVICE_LAYER = "Service";
+  public static final String SERVICE_IMPL_LAYER = "ServiceImpl";
+
+
 }
