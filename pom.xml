@@ -88,9 +88,10 @@
                 <artifactId>pitest-maven</artifactId>
                 <version>1.4.3</version>
                 <configuration>
-                    <excludedTestClasses>
-                        <param>net.dg.springrestweather.model*</param>
-                    </excludedTestClasses>
+                    <excludedClasses>
+                        <param>net.dg.springrestweather.model.*</param>
+                    </excludedClasses>
+                    <mutationThreshold>80</mutationThreshold>
                     <targetClasses>
                         <param>net.dg.springrestweather.*</param>
                     </targetClasses>
