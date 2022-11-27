@@ -81,7 +81,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       #Run Tests
       - name: Run Pitest mutation coverage
-        run: mvn clean org.pitest:pitest-maven:mutationCoverage -DmutationThreshold=80
+        run: mvn org.pitest:pitest-maven:mutationCoverage -DmutationThreshold=80
   #Sonar Job
   sonar:
     #Depends on mutations's job
