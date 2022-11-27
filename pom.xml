@@ -25,9 +25,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.junit</groupId>
-            <artifactId>junit5-engine</artifactId>
-            <version>5.0.0-ALPHA</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -81,6 +82,29 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.4.3</version>
+                <configuration>
+                    <excludedTestClasses>
+                        <param>net.dg.springrestweather.model*</param>
+                    </excludedTestClasses>
+                    <targetClasses>
+                        <param>net.dg.springrestweather.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>net.dg.springrestweather.*</param>
+                    </targetTests>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>0.8</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
