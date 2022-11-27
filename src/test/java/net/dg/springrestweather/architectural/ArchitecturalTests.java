@@ -1,5 +1,8 @@
 package net.dg.springrestweather.architectural;
 
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
+import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
+
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
@@ -10,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
-import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
 class ArchitecturalTests {
 

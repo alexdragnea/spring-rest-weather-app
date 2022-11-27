@@ -28,6 +28,4 @@ public class TestConstants {
   public static final String CONTROLLER_LAYER = "Controller";
   public static final String SERVICE_LAYER = "Service";
   public static final String SERVICE_IMPL_LAYER = "ServiceImpl";
-
-
 }
