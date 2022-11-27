@@ -59,7 +59,7 @@ jobs:
   mutation:
     #Depends on test's job
     needs: tests
-    name: Mutation Coverage
+    name: Mutation Tests
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
     #Job's steps
