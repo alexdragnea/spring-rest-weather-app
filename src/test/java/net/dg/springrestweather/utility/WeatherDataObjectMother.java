@@ -58,9 +58,7 @@ public class WeatherDataObjectMother {
   }
 
   public static Clouds buildClouds() {
-    Clouds clouds = new Clouds();
-    clouds.setAll(TestConstants.DATA_INTEGER);
-    return clouds;
+    return Clouds.builder().all(TestConstants.DATA_INTEGER).build();
   }
 
   public static Sys buildSys() {

@@ -4,5 +4,7 @@ import net.dg.springrestweather.model.WeatherData;
 
 public interface OpenWeatherMapService {
 
-  WeatherData getCurrenWeather();
+  WeatherData getWeatherBasedOnCoordinates(String latitude, String longitude);
+
+  WeatherData getWeatherByCity(String city);
 }

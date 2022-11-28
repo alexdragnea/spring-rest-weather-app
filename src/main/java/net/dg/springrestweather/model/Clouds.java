@@ -1,11 +1,13 @@
 package net.dg.springrestweather.model;
 
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
-@Setter
+@AllArgsConstructor
+@Builder
 public class Clouds implements Serializable {
 
   public Integer all;
