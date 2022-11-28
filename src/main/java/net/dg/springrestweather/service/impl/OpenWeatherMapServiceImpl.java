@@ -12,19 +12,13 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   @Value("${weather.apiKey}")
   String apiKey;
 
-  @Value("${weather.latitude}")
-  String latitude;
-
-  @Value("${weather.longitude}")
-  String longitude;
-
   OpenWeatherMapClient openWeatherMapClient;
 
   public OpenWeatherMapServiceImpl(OpenWeatherMapClient openWeatherMapClient) {
     this.openWeatherMapClient = openWeatherMapClient;
   }
 
-  public WeatherData getCurrenWeather() {
+  public WeatherData getWeatherBasedOnCoordinates(String latitude, String longitude) {
     return openWeatherMapClient.currentWeather(latitude, longitude, apiKey);
   }
 

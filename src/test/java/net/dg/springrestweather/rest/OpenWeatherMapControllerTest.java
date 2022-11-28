@@ -28,7 +28,8 @@ class OpenWeatherMapControllerTest {
   @Test
   void testGetCurrentWeather() throws Exception {
 
-    when(openWeatherService.getCurrenWeather()).thenReturn(WeatherDataObjectMother.buildWeather());
+    when(openWeatherService.getWeatherBasedOnCoordinates(any(), any()))
+        .thenReturn(WeatherDataObjectMother.buildWeather());
 
     mockMvc
         .perform(
