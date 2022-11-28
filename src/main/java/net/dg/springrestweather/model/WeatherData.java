@@ -1,7 +1,6 @@
 package net.dg.springrestweather.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +10,7 @@ import lombok.Builder;
 public class WeatherData implements Serializable {
 
   public Coord coord;
-  public List<Weather> weather = new ArrayList<Weather>();
+  public List<Weather> weather;
   public String base;
   public Main main;
   public Integer visibility;
