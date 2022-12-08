@@ -12,6 +12,9 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   @Value("${weather.apiKey}")
   String apiKey;
 
+  @Value("${weather.measurementType}")
+  String measurementType;
+
   OpenWeatherMapClient openWeatherMapClient;
 
   public OpenWeatherMapServiceImpl(OpenWeatherMapClient openWeatherMapClient) {
@@ -19,11 +22,11 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   }
 
   public WeatherData getWeatherBasedOnCoordinates(String latitude, String longitude) {
-    return openWeatherMapClient.currentWeather(latitude, longitude, apiKey);
+    return openWeatherMapClient.currentWeather(latitude, longitude, apiKey, measurementType);
   }
 
   public WeatherData getWeatherByCity(String city) {
 
-    return openWeatherMapClient.getWeatherByCity(city, apiKey);
+    return openWeatherMapClient.getWeatherByCity(city, apiKey, measurementType);
   }
 }

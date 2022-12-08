@@ -3,9 +3,11 @@ package net.dg.springrestweather.model;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 
 @AllArgsConstructor
 @Builder
+@Data
 public class Wind implements Serializable {
 
   public Double speed;

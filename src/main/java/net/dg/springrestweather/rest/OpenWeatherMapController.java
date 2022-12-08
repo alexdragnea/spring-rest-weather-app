@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import net.dg.springrestweather.model.WeatherData;
+import net.dg.springrestweather.model.WeatherOWM;
+import net.dg.springrestweather.service.converter.WeatherOWMConverterService;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OpenWeatherMapController {
 
   private final OpenWeatherMapServiceImpl openWeatherMapService;
+  private final WeatherOWMConverterService weatherOWMConverterService;
 
   @Operation(summary = "Get WeatherData based on coordinates")
   @ApiResponses(
@@ -36,6 +39,10 @@ public class OpenWeatherMapController {
   @GetMapping(value = "/coordinates")
   public ResponseEntity<WeatherData> getWeatherBasedOnCoordinates(
       @RequestParam String latitude, String longitude) {
+
+    WeatherOWM weatherOWMResponse =
+        weatherOWMConverterService.converOWMResponse(
+            openWeatherMapService.getWeatherBasedOnCoordinates(latitude, longitude));
 
     return ResponseEntity.ok(
         openWeatherMapService.getWeatherBasedOnCoordinates(latitude, longitude));
@@ -56,6 +63,8 @@ public class OpenWeatherMapController {
   @GetMapping
   public ResponseEntity<WeatherData> getWeatherBasedOnCity(@RequestParam String city) {
 
+//    WeatherOWM weatherOWMResponse =
+//        weatherOWMConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
     return ResponseEntity.ok(openWeatherMapService.getWeatherByCity(city));
   }
 }

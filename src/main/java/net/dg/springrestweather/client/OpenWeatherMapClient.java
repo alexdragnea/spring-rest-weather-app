@@ -12,9 +12,12 @@ public interface OpenWeatherMapClient {
   WeatherData currentWeather(
       @RequestParam("lat") String lat,
       @RequestParam("lon") String lon,
-      @RequestParam("appid") String apiKey);
+      @RequestParam("appid") String apiKey,
+      @RequestParam("units") String measurementType);
 
   @GetMapping(value = "/weather")
   WeatherData getWeatherByCity(
-      @RequestParam("q") String city, @RequestParam("appid") String apiKey);
+      @RequestParam("q") String city,
+      @RequestParam("appid") String apiKey,
+      @RequestParam("units") String measurementType);
 }
