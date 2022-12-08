@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
-import net.dg.springrestweather.model.OWMConvertedResponse;
+import net.dg.springrestweather.model.OwmConvertedResponse;
 import net.dg.springrestweather.model.owm.WeatherData;
-import net.dg.springrestweather.service.converter.OWMResponseConverterService;
+import net.dg.springrestweather.service.converter.OwmResponseConverterService;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class OpenWeatherMapController {
 
   private final OpenWeatherMapServiceImpl openWeatherMapService;
-  private final OWMResponseConverterService OWMResponseConverterService;
+  private final OwmResponseConverterService OWMResponseConverterService;
 
   @Operation(summary = "Get WeatherData based on coordinates")
   @ApiResponses(
@@ -35,14 +35,14 @@ public class OpenWeatherMapController {
             })
       })
   @GetMapping(value = "/coordinates")
-  public ResponseEntity<OWMConvertedResponse> getWeatherBasedOnCoordinates(
+  public ResponseEntity<OwmConvertedResponse> getWeatherBasedOnCoordinates(
       @RequestParam String latitude, String longitude) {
 
-    OWMConvertedResponse OWMConvertedResponseResponse =
+    OwmConvertedResponse OwmConvertedResponseResponse =
         OWMResponseConverterService.converOWMResponse(
             openWeatherMapService.getWeatherBasedOnCoordinates(latitude, longitude));
 
-    return ResponseEntity.ok(OWMConvertedResponseResponse);
+    return ResponseEntity.ok(OwmConvertedResponseResponse);
   }
 
   @Operation(summary = "Get WeatherData based on city")
@@ -58,10 +58,10 @@ public class OpenWeatherMapController {
             })
       })
   @GetMapping
-  public ResponseEntity<OWMConvertedResponse> getWeatherBasedOnCity(@RequestParam String city) {
+  public ResponseEntity<OwmConvertedResponse> getWeatherBasedOnCity(@RequestParam String city) {
 
-    OWMConvertedResponse OWMConvertedResponseResponse =
+    OwmConvertedResponse OwmConvertedResponseResponse =
         OWMResponseConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
-    return ResponseEntity.ok(OWMConvertedResponseResponse);
+    return ResponseEntity.ok(OwmConvertedResponseResponse);
   }
 }

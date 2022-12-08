@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.model.OWMConvertedResponse;
+import net.dg.springrestweather.model.OwmConvertedResponse;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,30 +13,30 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class OWMConvertedResponseConverterServiceTest {
+class OwmConvertedResponseConverterServiceTest {
 
-  @InjectMocks private OWMResponseConverterService OWMResponseConverterService;
+  @InjectMocks private OwmResponseConverterService OWMResponseConverterService;
 
   @Test
   void testConvertSuccesfully() {
-    OWMConvertedResponse OWMConvertedResponseConverted =
+    OwmConvertedResponse OwmConvertedResponseConverted =
         OWMResponseConverterService.converOWMResponse(WeatherDataObjectMother.buildWeather());
 
     Assertions.assertAll(
-        () -> assertNotNull(OWMConvertedResponseConverted),
-        () -> assertEquals(TestConstants.CITY, OWMConvertedResponseConverted.getCity()),
+        () -> assertNotNull(OwmConvertedResponseConverted),
+        () -> assertEquals(TestConstants.CITY, OwmConvertedResponseConverted.getCity()),
         () ->
             assertEquals(
                 String.valueOf(TestConstants.DATA_INTEGER),
-                OWMConvertedResponseConverted.getTimeZone()),
-        () -> assertEquals(TestConstants.TEST, OWMConvertedResponseConverted.getForecast()),
+                OwmConvertedResponseConverted.getTimeZone()),
+        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getForecast()),
         () ->
             assertEquals(
-                TestConstants.DATA_INTEGER, OWMConvertedResponseConverted.getTemperature()),
-        () -> assertEquals(TestConstants.DATA_DOUBLE, OWMConvertedResponseConverted.getWindSpeed()),
-        () -> assertEquals(TestConstants.TEST, OWMConvertedResponseConverted.getForecast()),
-        () -> assertEquals(TestConstants.DATA_INTEGER, OWMConvertedResponseConverted.getPressure()),
-        () -> assertEquals(TestConstants.DATA_INTEGER, OWMConvertedResponseConverted.getHumidity()),
-        () -> assertEquals(TestConstants.TEST, OWMConvertedResponseConverted.getDescription()));
+                TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getTemperature()),
+        () -> assertEquals(TestConstants.DATA_DOUBLE, OwmConvertedResponseConverted.getWindSpeed()),
+        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getForecast()),
+        () -> assertEquals(TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getPressure()),
+        () -> assertEquals(TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getHumidity()),
+        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getDescription()));
   }
 }

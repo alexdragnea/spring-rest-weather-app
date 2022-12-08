@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OWMConvertedResponse {
+public class OwmConvertedResponse {
 
   private String city;
   private String timeZone;

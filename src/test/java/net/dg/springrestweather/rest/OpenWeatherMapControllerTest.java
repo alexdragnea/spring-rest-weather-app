@@ -7,10 +7,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import net.dg.springrestweather.client.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.service.converter.OWMResponseConverterService;
+import net.dg.springrestweather.service.converter.OwmResponseConverterService;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
-import net.dg.springrestweather.utility.WeatherOWMObjectMother;
+import net.dg.springrestweather.utility.WeatherOwmObjectMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,7 +26,8 @@ class OpenWeatherMapControllerTest {
 
   @MockBean OpenWeatherMapClient openWeatherMapClient;
   @MockBean OpenWeatherMapServiceImpl openWeatherService;
-  @MockBean OWMResponseConverterService OWMResponseConverterService;
+  @MockBean
+  OwmResponseConverterService OWMResponseConverterService;
 
   @Test
   void testGetWeatherBasedOnCoordinates() throws Exception {
@@ -35,7 +36,7 @@ class OpenWeatherMapControllerTest {
         .thenReturn(WeatherDataObjectMother.buildWeather());
 
     when(OWMResponseConverterService.converOWMResponse(any()))
-        .thenReturn(WeatherOWMObjectMother.buildWeatherOWM());
+        .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
 
     mockMvc
         .perform(
@@ -67,7 +68,7 @@ class OpenWeatherMapControllerTest {
         .thenReturn(WeatherDataObjectMother.buildWeather());
 
     when(OWMResponseConverterService.converOWMResponse(any()))
-        .thenReturn(WeatherOWMObjectMother.buildWeatherOWM());
+        .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
 
     mockMvc
         .perform(
