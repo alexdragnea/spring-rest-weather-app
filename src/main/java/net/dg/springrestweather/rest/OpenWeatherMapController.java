@@ -58,8 +58,7 @@ public class OpenWeatherMapController {
             })
       })
   @GetMapping
-  public ResponseEntity<OWMConvertedResponse> getWeatherBasedOnCity(
-      @RequestParam String city) {
+  public ResponseEntity<OWMConvertedResponse> getWeatherBasedOnCity(@RequestParam String city) {
 
     OWMConvertedResponse OWMConvertedResponseResponse =
         OWMResponseConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
