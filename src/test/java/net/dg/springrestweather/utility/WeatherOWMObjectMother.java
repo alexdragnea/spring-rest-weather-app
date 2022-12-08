@@ -1,12 +1,12 @@
 package net.dg.springrestweather.utility;
 
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.model.WeatherOWMConvertedResponse;
+import net.dg.springrestweather.model.OWMConvertedResponse;
 
 public class WeatherOWMObjectMother {
 
-  public static WeatherOWMConvertedResponse buildWeatherOWM() {
-    return WeatherOWMConvertedResponse.builder()
+  public static OWMConvertedResponse buildWeatherOWM() {
+    return OWMConvertedResponse.builder()
         .city(TestConstants.CITY)
         .timeZone(TestConstants.TEST)
         .forecast(TestConstants.TEST)

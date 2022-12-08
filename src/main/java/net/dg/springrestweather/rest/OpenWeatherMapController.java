@@ -6,23 +6,21 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
-import net.dg.springrestweather.model.WeatherOWMConvertedResponse;
+import net.dg.springrestweather.model.OWMConvertedResponse;
 import net.dg.springrestweather.model.owm.WeatherData;
-import net.dg.springrestweather.service.converter.WeatherOWMConverterService;
+import net.dg.springrestweather.service.converter.OWMResponseConverterService;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class OpenWeatherMapController {
 
   private final OpenWeatherMapServiceImpl openWeatherMapService;
-  private final WeatherOWMConverterService weatherOWMConverterService;
+  private final OWMResponseConverterService OWMResponseConverterService;
 
   @Operation(summary = "Get WeatherData based on coordinates")
   @ApiResponses(
@@ -37,14 +35,14 @@ public class OpenWeatherMapController {
             })
       })
   @GetMapping(value = "/coordinates")
-  public ResponseEntity<WeatherOWMConvertedResponse> getWeatherBasedOnCoordinates(
+  public ResponseEntity<OWMConvertedResponse> getWeatherBasedOnCoordinates(
       @RequestParam String latitude, String longitude) {
 
-    WeatherOWMConvertedResponse weatherOWMConvertedResponseResponse =
-        weatherOWMConverterService.converOWMResponse(
+    OWMConvertedResponse OWMConvertedResponseResponse =
+        OWMResponseConverterService.converOWMResponse(
             openWeatherMapService.getWeatherBasedOnCoordinates(latitude, longitude));
 
-    return ResponseEntity.ok(weatherOWMConvertedResponseResponse);
+    return ResponseEntity.ok(OWMConvertedResponseResponse);
   }
 
   @Operation(summary = "Get WeatherData based on city")
@@ -60,11 +58,11 @@ public class OpenWeatherMapController {
             })
       })
   @GetMapping
-  public ResponseEntity<WeatherOWMConvertedResponse> getWeatherBasedOnCity(
+  public ResponseEntity<OWMConvertedResponse> getWeatherBasedOnCity(
       @RequestParam String city) {
 
-    WeatherOWMConvertedResponse weatherOWMConvertedResponseResponse =
-        weatherOWMConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
-    return ResponseEntity.ok(weatherOWMConvertedResponseResponse);
+    OWMConvertedResponse OWMConvertedResponseResponse =
+        OWMResponseConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
+    return ResponseEntity.ok(OWMConvertedResponseResponse);
   }
 }
