@@ -1,4 +1,4 @@
-package net.dg.springrestweather.model;
+package net.dg.springrestweather.model.owm;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;

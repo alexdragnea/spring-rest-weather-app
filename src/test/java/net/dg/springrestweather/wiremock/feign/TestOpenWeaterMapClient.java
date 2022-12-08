@@ -5,10 +5,13 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.service.converter.WeatherOWMConverterService;
+import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
+import net.dg.springrestweather.utility.WeatherDataObjectMother;
 import net.dg.springrestweather.utility.WeatherOWMObjectMother;
 import org.apache.http.entity.ContentType;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +21,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,13 +35,21 @@ class TestOpenWeaterMapClient {
 
   @Autowired private MockMvc mockMvc;
 
-  @Autowired WeatherOWMConverterService weatherOWMConverterService;
+  @Autowired private WeatherOWMConverterService weatherOWMConverterService;
 
-  @BeforeAll
-  static void init() {
+  @Autowired private OpenWeatherMapServiceImpl openWeatherMapService;
+
+  @BeforeEach
+  void init() {
     wireMockServer = new WireMockServer(new WireMockConfiguration().port(7070));
     wireMockServer.start();
     WireMock.configureFor("localhost", 7070);
+
+    when(openWeatherMapService.getWeatherByCity(any()))
+        .thenReturn(WeatherDataObjectMother.buildWeather());
+
+    when(weatherOWMConverterService.converOWMResponse(any()))
+        .thenReturn(WeatherOWMObjectMother.buildWeatherOWM());
   }
 
   @AfterAll
@@ -50,7 +63,7 @@ class TestOpenWeaterMapClient {
         WireMock.get(urlMatching(TestConstants.BASE_ENDPOINT_PATH))
             .willReturn(
                 aResponse()
-                        .withBody(String.valueOf(WeatherOWMObjectMother.buildWeatherOWM()))
+                    .withBody(String.valueOf(WeatherOWMObjectMother.buildWeatherOWM()))
                     .withStatus(HttpStatus.OK.ordinal())
                     .withHeader("Content-Type", ContentType.APPLICATION_JSON.toString())));
 

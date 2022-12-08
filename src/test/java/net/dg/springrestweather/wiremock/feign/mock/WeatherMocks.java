@@ -2,7 +2,7 @@ package net.dg.springrestweather.wiremock.feign.mock;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
-import net.dg.springrestweather.model.WeatherOWM;
+import net.dg.springrestweather.model.WeatherOWMConvertedResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -22,7 +22,7 @@ public class WeatherMocks {
                     .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                     .withBody(
                         copyToString(
-                            WeatherOWM.class
+                            WeatherOWMConvertedResponse.class
                                 .getClassLoader()
                                 .getResourceAsStream("payload/get-books-response.json"),
                             defaultCharset()))));

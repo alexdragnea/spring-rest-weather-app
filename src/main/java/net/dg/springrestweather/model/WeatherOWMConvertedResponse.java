@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class WeatherOWM {
+public class WeatherOWMConvertedResponse {
 
   public String city;
   public String timeZone;

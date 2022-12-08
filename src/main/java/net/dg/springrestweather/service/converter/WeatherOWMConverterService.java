@@ -1,17 +1,16 @@
 package net.dg.springrestweather.service.converter;
 
-import net.dg.springrestweather.model.Main;
-import net.dg.springrestweather.model.WeatherData;
-import net.dg.springrestweather.model.WeatherOWM;
+import net.dg.springrestweather.model.owm.WeatherData;
+import net.dg.springrestweather.model.WeatherOWMConvertedResponse;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WeatherOWMConverterService {
 
-  public WeatherOWM converOWMResponse(WeatherData weatherData) {
+  public WeatherOWMConvertedResponse converOWMResponse(WeatherData weatherData) {
 
     double temperature_double_format = weatherData.getMain().getTemp();
-    return WeatherOWM.builder()
+    return WeatherOWMConvertedResponse.builder()
         .city(weatherData.getName())
         .timeZone(String.valueOf(weatherData.getTimezone()))
         .forecast(weatherData.getWeather().get(0).getMain())

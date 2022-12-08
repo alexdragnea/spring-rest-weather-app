@@ -1,6 +1,6 @@
 package net.dg.springrestweather.service;
 
-import net.dg.springrestweather.model.WeatherData;
+import net.dg.springrestweather.model.owm.WeatherData;
 
 public interface OpenWeatherMapService {
 
