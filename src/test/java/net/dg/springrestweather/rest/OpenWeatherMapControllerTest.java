@@ -26,8 +26,7 @@ class OpenWeatherMapControllerTest {
 
   @MockBean OpenWeatherMapClient openWeatherMapClient;
   @MockBean OpenWeatherMapServiceImpl openWeatherService;
-  @MockBean
-  OwmResponseConverterService OWMResponseConverterService;
+  @MockBean OwmResponseConverterService OWMResponseConverterService;
 
   @Test
   void testGetWeatherBasedOnCoordinates() throws Exception {
