@@ -1,15 +1,14 @@
 package net.dg.springrestweather.wiremock.feign.mock;
 
+import static java.nio.charset.Charset.defaultCharset;
+import static org.springframework.util.StreamUtils.copyToString;
+
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import java.io.IOException;
 import net.dg.springrestweather.model.WeatherOWMConvertedResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-
-import java.io.IOException;
-
-import static java.nio.charset.Charset.defaultCharset;
-import static org.springframework.util.StreamUtils.copyToString;
 
 public class WeatherMocks {
 

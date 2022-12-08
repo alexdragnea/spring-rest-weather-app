@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface OpenWeatherMapClient {
 
   @GetMapping(value = "/weather")
-  WeatherData currentWeather(
+  WeatherData getWeatherBasedOnCoordinates(
       @RequestParam("lat") String lat,
       @RequestParam("lon") String lon,
       @RequestParam("appid") String apiKey,

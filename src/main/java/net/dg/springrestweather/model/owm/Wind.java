@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Wind implements Serializable {
 
-  public Double speed;
-  public Integer deg;
-  public Double gust;
+  private Double speed;
+  private Integer deg;
+  private Double gust;
 }

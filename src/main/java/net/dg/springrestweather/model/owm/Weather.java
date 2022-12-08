@@ -10,8 +10,8 @@ import lombok.Data;
 @Builder
 public class Weather implements Serializable {
 
-  public Integer id;
-  public String main;
-  public String description;
-  public String icon;
+  private Integer id;
+  private String main;
+  private String description;
+  private String icon;
 }

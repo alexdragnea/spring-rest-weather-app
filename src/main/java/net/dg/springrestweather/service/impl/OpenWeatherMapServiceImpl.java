@@ -22,7 +22,8 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   }
 
   public WeatherData getWeatherBasedOnCoordinates(String latitude, String longitude) {
-    return openWeatherMapClient.currentWeather(latitude, longitude, apiKey, measurementType);
+    return openWeatherMapClient.getWeatherBasedOnCoordinates(
+        latitude, longitude, apiKey, measurementType);
   }
 
   public WeatherData getWeatherByCity(String city) {

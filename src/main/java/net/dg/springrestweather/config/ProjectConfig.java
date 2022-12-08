@@ -5,5 +5,4 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableFeignClients(basePackages = "net.dg.springrestweather.client")
-public class ProjectConfig {
-}
+public class ProjectConfig {}

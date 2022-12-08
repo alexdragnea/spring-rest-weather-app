@@ -11,17 +11,17 @@ import lombok.Data;
 @Builder
 public class WeatherData implements Serializable {
 
-  public Coord coord;
-  public List<Weather> weather;
-  public String base;
-  public Main main;
-  public Integer visibility;
-  public Wind wind;
-  public Clouds clouds;
-  public Integer dt;
-  public Sys sys;
-  public Integer timezone;
-  public Integer id;
-  public String name;
-  public Integer cod;
+  private Coord coord;
+  private List<Weather> weather;
+  private String base;
+  private Main main;
+  private Integer visibility;
+  private Wind wind;
+  private Clouds clouds;
+  private Integer dt;
+  private Sys sys;
+  private Integer timezone;
+  private Integer id;
+  private String name;
+  private Integer cod;
 }

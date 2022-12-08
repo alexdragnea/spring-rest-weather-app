@@ -10,10 +10,10 @@ import lombok.Data;
 @Builder
 public class Main implements Serializable {
 
-  public Double temp;
-  public Double feelsLike;
-  public Double tempMin;
-  public Double tempMax;
-  public Integer pressure;
-  public Integer humidity;
+  private Double temp;
+  private Double feelsLike;
+  private Double tempMin;
+  private Double tempMax;
+  private Integer pressure;
+  private Integer humidity;
 }

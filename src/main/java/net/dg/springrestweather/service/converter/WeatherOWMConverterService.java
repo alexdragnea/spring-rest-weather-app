@@ -1,7 +1,7 @@
 package net.dg.springrestweather.service.converter;
 
-import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.model.WeatherOWMConvertedResponse;
+import net.dg.springrestweather.model.owm.WeatherData;
 import org.springframework.stereotype.Service;
 
 @Service
