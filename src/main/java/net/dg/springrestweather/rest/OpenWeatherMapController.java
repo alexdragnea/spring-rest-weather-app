@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class OpenWeatherMapController {
 
   private final OpenWeatherMapServiceImpl openWeatherMapService;
-  private final OwmResponseConverterService OWMResponseConverterService;
+  private final OwmResponseConverterService owmResponseConverterService;
 
   @Operation(summary = "Get WeatherData based on coordinates")
   @ApiResponses(
@@ -38,11 +38,11 @@ public class OpenWeatherMapController {
   public ResponseEntity<OwmConvertedResponse> getWeatherBasedOnCoordinates(
       @RequestParam String latitude, String longitude) {
 
-    OwmConvertedResponse OwmConvertedResponseResponse =
-        OWMResponseConverterService.converOWMResponse(
+    OwmConvertedResponse owmConvertedResponse =
+        owmResponseConverterService.converOWMResponse(
             openWeatherMapService.getWeatherBasedOnCoordinates(latitude, longitude));
 
-    return ResponseEntity.ok(OwmConvertedResponseResponse);
+    return ResponseEntity.ok(owmConvertedResponse);
   }
 
   @Operation(summary = "Get WeatherData based on city")
@@ -60,8 +60,8 @@ public class OpenWeatherMapController {
   @GetMapping
   public ResponseEntity<OwmConvertedResponse> getWeatherBasedOnCity(@RequestParam String city) {
 
-    OwmConvertedResponse OwmConvertedResponseResponse =
-        OWMResponseConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
-    return ResponseEntity.ok(OwmConvertedResponseResponse);
+    OwmConvertedResponse owmConvertedResponse =
+        owmResponseConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
+    return ResponseEntity.ok(owmConvertedResponse);
   }
 }
