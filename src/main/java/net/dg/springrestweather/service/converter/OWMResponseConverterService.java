@@ -9,12 +9,13 @@ public class OWMResponseConverterService {
 
   public OWMConvertedResponse converOWMResponse(WeatherData weatherData) {
 
-    double temperature_double_format = weatherData.getMain().getTemp();
+    double temperature = weatherData.getMain().getTemp();
+
     return OWMConvertedResponse.builder()
         .city(weatherData.getName())
         .timeZone(String.valueOf(weatherData.getTimezone()))
         .forecast(weatherData.getWeather().get(0).getMain())
-        .temperature((int) (temperature_double_format))
+        .temperature((int) (temperature))
         .windSpeed(weatherData.getWind().getSpeed())
         .pressure(weatherData.getMain().getPressure())
         .humidity(weatherData.getMain().getHumidity())
