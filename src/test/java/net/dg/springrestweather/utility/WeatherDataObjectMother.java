@@ -2,7 +2,7 @@ package net.dg.springrestweather.utility;
 
 import java.util.List;
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.model.*;
+import net.dg.springrestweather.model.owm.*;
 
 public class WeatherDataObjectMother {
 

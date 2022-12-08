@@ -1,6 +1,6 @@
 package net.dg.springrestweather.client;
 
-import net.dg.springrestweather.model.WeatherData;
+import net.dg.springrestweather.model.owm.WeatherData;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface OpenWeatherMapClient {
 
   @GetMapping(value = "/weather")
-  WeatherData currentWeather(
+  WeatherData getWeatherBasedOnCoordinates(
       @RequestParam("lat") String lat,
       @RequestParam("lon") String lon,
-      @RequestParam("appid") String apiKey);
+      @RequestParam("appid") String apiKey,
+      @RequestParam("units") String measurementType);
 
   @GetMapping(value = "/weather")
   WeatherData getWeatherByCity(
-      @RequestParam("q") String city, @RequestParam("appid") String apiKey);
+      @RequestParam("q") String city,
+      @RequestParam("appid") String apiKey,
+      @RequestParam("units") String measurementType);
 }

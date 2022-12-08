@@ -1,7 +1,7 @@
 package net.dg.springrestweather.service.impl;
 
 import net.dg.springrestweather.client.OpenWeatherMapClient;
-import net.dg.springrestweather.model.WeatherData;
+import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.service.OpenWeatherMapService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,9 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   @Value("${weather.apiKey}")
   String apiKey;
 
+  @Value("${weather.measurementType}")
+  String measurementType;
+
   OpenWeatherMapClient openWeatherMapClient;
 
   public OpenWeatherMapServiceImpl(OpenWeatherMapClient openWeatherMapClient) {
@@ -19,11 +22,12 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   }
 
   public WeatherData getWeatherBasedOnCoordinates(String latitude, String longitude) {
-    return openWeatherMapClient.currentWeather(latitude, longitude, apiKey);
+    return openWeatherMapClient.getWeatherBasedOnCoordinates(
+        latitude, longitude, apiKey, measurementType);
   }
 
   public WeatherData getWeatherByCity(String city) {
 
-    return openWeatherMapClient.getWeatherByCity(city, apiKey);
+    return openWeatherMapClient.getWeatherByCity(city, apiKey, measurementType);
   }
 }
