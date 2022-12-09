@@ -2,14 +2,20 @@ package net.dg.springrestweather.service.converter;
 
 import net.dg.springrestweather.model.OwmConvertedResponse;
 import net.dg.springrestweather.model.owm.WeatherData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OwmResponseConverterService {
 
-  public OwmConvertedResponse converOWMResponse(WeatherData weatherData) {
+  private static final Logger LOGGER = LoggerFactory.getLogger(OwmResponseConverterService.class);
+
+  public OwmConvertedResponse convertOWMResponse(WeatherData weatherData) {
 
     double temperature = weatherData.getMain().getTemp();
+
+    LOGGER.info("Converting WeatherData object: {} to OwmConvertedResponse object.", weatherData);
 
     return OwmConvertedResponse.builder()
         .city(weatherData.getName())

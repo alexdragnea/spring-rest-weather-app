@@ -20,7 +20,7 @@ class OwmConvertedResponseConverterServiceTest {
   @Test
   void testConvertSuccesfully() {
     OwmConvertedResponse OwmConvertedResponseConverted =
-        OWMResponseConverterService.converOWMResponse(WeatherDataObjectMother.buildWeather());
+        OWMResponseConverterService.convertOWMResponse(WeatherDataObjectMother.buildWeather());
 
     Assertions.assertAll(
         () -> assertNotNull(OwmConvertedResponseConverted),
