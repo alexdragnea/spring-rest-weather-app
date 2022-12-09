@@ -39,7 +39,7 @@ public class OpenWeatherMapController {
       @RequestParam String latitude, String longitude) {
 
     OwmConvertedResponse owmConvertedResponse =
-        owmResponseConverterService.converOWMResponse(
+        owmResponseConverterService.convertOWMResponse(
             openWeatherMapService.getWeatherBasedOnCoordinates(latitude, longitude));
 
     return ResponseEntity.ok(owmConvertedResponse);
@@ -61,7 +61,8 @@ public class OpenWeatherMapController {
   public ResponseEntity<OwmConvertedResponse> getWeatherBasedOnCity(@RequestParam String city) {
 
     OwmConvertedResponse owmConvertedResponse =
-        owmResponseConverterService.converOWMResponse(openWeatherMapService.getWeatherByCity(city));
+        owmResponseConverterService.convertOWMResponse(
+            openWeatherMapService.getWeatherByCity(city));
     return ResponseEntity.ok(owmConvertedResponse);
   }
 }

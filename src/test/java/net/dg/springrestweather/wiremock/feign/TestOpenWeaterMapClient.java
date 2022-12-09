@@ -10,11 +10,13 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import net.dg.springrestweather.client.OpenWeatherMapClient;
+import net.dg.springrestweather.client.errordecoder.FeignErrorDecoder;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +43,18 @@ class TestOpenWeaterMapClient {
 
   @Autowired private OpenWeatherMapClient openWeatherMapClient;
 
+  @Autowired private FeignErrorDecoder feignErrorDecoder;
+
   @BeforeAll
   static void initMockServer() {
     wireMockServer = new WireMockServer(new WireMockConfiguration().port(7777));
     wireMockServer.start();
     WireMock.configureFor("localhost", 7777);
+  }
+
+  @BeforeEach
+  void resetWiremock() {
+    wireMockServer.resetAll();
   }
 
   @AfterAll
@@ -55,7 +64,7 @@ class TestOpenWeaterMapClient {
 
   @Test
   void testCallGetWeatherByLatAndLon() throws Exception {
-    createMock();
+    happyFlowStub();
 
     mockMvc.perform(get(TestConstants.GET_CURRENT_WEATHER)).andExpect(status().isOk());
 
@@ -64,14 +73,58 @@ class TestOpenWeaterMapClient {
 
   @Test
   void testCallGetWeatherByCity() throws Exception {
-    createMock();
+    happyFlowStub();
 
     mockMvc.perform(get(TestConstants.GET_WEATHER_BASED_ON_CITY)).andExpect(status().isOk());
 
     verify(getRequestedFor(urlPathEqualTo(TestConstants.BASE_ENDPOINT_PATH)));
   }
 
-  void createMock() {
+  @Test
+  void testCallGetWeatherByCityRetryingFor408Status() throws Exception {
+    timeoutStub();
+
+    mockMvc
+        .perform(get(TestConstants.GET_WEATHER_BASED_ON_CITY))
+        .andExpect(status().isServiceUnavailable());
+
+    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.BASE_ENDPOINT_PATH)));
+  }
+
+  @Test
+  void testCallGetWeatherByCityRetryingFor503Status() throws Exception {
+    serviceUnavailableStub();
+
+    mockMvc
+        .perform(get(TestConstants.GET_WEATHER_BASED_ON_CITY))
+        .andExpect(status().isServiceUnavailable());
+
+    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.BASE_ENDPOINT_PATH)));
+  }
+
+  @Test
+  void testCallGetWeatherByCoordinatesRetryingFor408Status() throws Exception {
+    serviceUnavailableStub();
+
+    mockMvc
+        .perform(get(TestConstants.GET_CURRENT_WEATHER))
+        .andExpect(status().isServiceUnavailable());
+
+    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.BASE_ENDPOINT_PATH)));
+  }
+
+  @Test
+  void testCallGetWeatherByCoordinatesRetryingFor503Status() throws Exception {
+    serviceUnavailableStub();
+
+    mockMvc
+        .perform(get(TestConstants.GET_CURRENT_WEATHER))
+        .andExpect(status().isServiceUnavailable());
+
+    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.BASE_ENDPOINT_PATH)));
+  }
+
+  void happyFlowStub() {
 
     final WeatherData weatherData = WeatherDataObjectMother.buildWeather();
 
@@ -84,5 +137,25 @@ class TestOpenWeaterMapClient {
                     .withStatus(HttpStatus.OK.value())
                     .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .withJsonBody(node)));
+  }
+
+  void timeoutStub() {
+
+    stubFor(
+        WireMock.get(urlPathMatching(TestConstants.BASE_ENDPOINT_PATH))
+            .willReturn(
+                aResponse()
+                    .withStatus(HttpStatus.REQUEST_TIMEOUT.value())
+                    .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)));
+  }
+
+  void serviceUnavailableStub() {
+
+    stubFor(
+        WireMock.get(urlPathMatching(TestConstants.BASE_ENDPOINT_PATH))
+            .willReturn(
+                aResponse()
+                    .withStatus(HttpStatus.SERVICE_UNAVAILABLE.value())
+                    .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)));
   }
 }

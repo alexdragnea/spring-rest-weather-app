@@ -34,7 +34,7 @@ class OpenWeatherMapControllerTest {
     when(openWeatherService.getWeatherBasedOnCoordinates(any(), any()))
         .thenReturn(WeatherDataObjectMother.buildWeather());
 
-    when(OWMResponseConverterService.converOWMResponse(any()))
+    when(OWMResponseConverterService.convertOWMResponse(any()))
         .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
 
     mockMvc
@@ -66,7 +66,7 @@ class OpenWeatherMapControllerTest {
     when(openWeatherService.getWeatherByCity(any()))
         .thenReturn(WeatherDataObjectMother.buildWeather());
 
-    when(OWMResponseConverterService.converOWMResponse(any()))
+    when(OWMResponseConverterService.convertOWMResponse(any()))
         .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
 
     mockMvc
