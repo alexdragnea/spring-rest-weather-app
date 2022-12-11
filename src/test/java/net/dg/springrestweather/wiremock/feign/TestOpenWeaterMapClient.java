@@ -14,7 +14,6 @@ import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -112,8 +111,6 @@ class TestOpenWeaterMapClient {
         .andExpect(status().isServiceUnavailable());
 
     verify(4, getRequestedFor(urlPathEqualTo(TestConstants.BASE_ENDPOINT_PATH)));
-
-    Assertions.assertThat(Thread.interrupted()).isTrue();
   }
 
   @Test
