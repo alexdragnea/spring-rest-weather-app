@@ -3,11 +3,9 @@ package net.dg.springrestweather.client.retryer;
 import feign.RetryableException;
 import feign.Retryer;
 import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class CustomRetryer implements Retryer {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CustomRetryer.class);
@@ -38,10 +36,10 @@ public class CustomRetryer implements Retryer {
     try {
       TimeUnit.MILLISECONDS.sleep(backoff);
     } catch (InterruptedException ex) {
-
+      Thread.currentThread().interrupt();
     }
 
-    LOGGER.info("Retrying: " + e.request().url() + " attempt " + attempt);
+    LOGGER.info("Retrying: {}, attempt: {}", e.request().url(), attempt);
   }
 
   @Override

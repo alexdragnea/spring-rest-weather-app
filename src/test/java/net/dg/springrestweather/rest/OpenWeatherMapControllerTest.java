@@ -5,10 +5,11 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import net.dg.springrestweather.client.OpenWeatherMapClient;
+import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.service.converter.OwmResponseConverterService;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;
+import net.dg.springrestweather.service.validation.OwmValidationService;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
 import net.dg.springrestweather.utility.WeatherOwmObjectMother;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ class OpenWeatherMapControllerTest {
   @MockBean OpenWeatherMapClient openWeatherMapClient;
   @MockBean OpenWeatherMapServiceImpl openWeatherService;
   @MockBean OwmResponseConverterService OWMResponseConverterService;
+  @MockBean OwmValidationService owmValidationService;
 
   @Test
   void testGetWeatherBasedOnCoordinates() throws Exception {

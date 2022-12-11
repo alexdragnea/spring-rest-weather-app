@@ -1,6 +1,6 @@
 package net.dg.springrestweather.service.impl;
 
-import net.dg.springrestweather.client.OpenWeatherMapClient;
+import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
 import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.service.OpenWeatherMapService;
 import org.springframework.beans.factory.annotation.Value;

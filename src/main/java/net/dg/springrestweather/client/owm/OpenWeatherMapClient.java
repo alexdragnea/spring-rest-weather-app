@@ -1,4 +1,4 @@
-package net.dg.springrestweather.client;
+package net.dg.springrestweather.client.owm;
 
 import net.dg.springrestweather.model.owm.WeatherData;
 import org.springframework.cloud.openfeign.FeignClient;
