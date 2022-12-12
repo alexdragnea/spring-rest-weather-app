@@ -1,10 +1,10 @@
 package net.dg.springrestweather.service.validation;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import javax.validation.ValidationException;
+import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.model.owm.Main;
 import net.dg.springrestweather.model.owm.Weather;
 import net.dg.springrestweather.model.owm.WeatherData;
@@ -26,7 +26,9 @@ class OwmValidationServiceTest {
     WeatherData weatherData = WeatherDataObjectMother.buildWeather();
 
     weatherData.setName(null);
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_NAME, ex.getMessage());
   }
 
   @Test
@@ -35,7 +37,9 @@ class OwmValidationServiceTest {
     WeatherData weatherData = WeatherDataObjectMother.buildWeather();
 
     weatherData.setTimezone(null);
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_TIMEZONE, ex.getMessage());
   }
 
   @Test
@@ -44,7 +48,9 @@ class OwmValidationServiceTest {
     WeatherData weatherData = WeatherDataObjectMother.buildWeather();
 
     weatherData.setWind(Wind.builder().speed(0.0).build());
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_WIND_WINDSPEED, ex.getMessage());
   }
 
   @Test
@@ -57,7 +63,9 @@ class OwmValidationServiceTest {
     weatherData.setMain(main);
 
     weatherData.setMain(Main.builder().pressure(null).build());
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_MAIN_PRESSURE, ex.getMessage());
   }
 
   @Test
@@ -69,7 +77,9 @@ class OwmValidationServiceTest {
     main.setHumidity(null);
     weatherData.setMain(main);
 
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_MAIN_HUMIDITY, ex.getMessage());
   }
 
   @Test
@@ -80,7 +90,9 @@ class OwmValidationServiceTest {
     weather.get(0).setDescription(null);
     weatherData.setWeather(weather);
 
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_WEATHER_DESCRIPTION, ex.getMessage());
   }
 
   @Test
@@ -91,7 +103,9 @@ class OwmValidationServiceTest {
     weather.get(0).setMain(null);
     weatherData.setWeather(weather);
 
-    assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    Throwable ex =
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+    assertEquals(TestConstants.INVALID_WEATHER_DATA_MAIN, ex.getMessage());
   }
 
   @Test
