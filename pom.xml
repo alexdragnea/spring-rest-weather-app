@@ -99,6 +99,8 @@
                 <configuration>
                     <excludedClasses>
                         <param>net.dg.springrestweather.model.*</param>
+                        <param>net.dg.springrestweather.constants.*</param>
+                        <param>net.dg.springrestweather.config.*</param>
                     </excludedClasses>
                     <mutationThreshold>80</mutationThreshold>
                     <targetClasses>
