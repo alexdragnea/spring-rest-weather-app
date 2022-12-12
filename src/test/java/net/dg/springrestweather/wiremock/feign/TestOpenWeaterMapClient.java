@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import net.dg.springrestweather.client.OpenWeatherMapClient;
 import net.dg.springrestweather.client.errordecoder.FeignErrorDecoder;
+import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
@@ -157,5 +157,7 @@ class TestOpenWeaterMapClient {
                 aResponse()
                     .withStatus(HttpStatus.SERVICE_UNAVAILABLE.value())
                     .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)));
+
+    Thread.interrupted();
   }
 }

@@ -3,12 +3,10 @@ package net.dg.springrestweather.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Builder
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class OwmConvertedResponse {
 
   private String city;

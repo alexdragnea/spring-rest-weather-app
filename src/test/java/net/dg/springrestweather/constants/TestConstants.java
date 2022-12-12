@@ -16,7 +16,6 @@ public class TestConstants {
   public static final String GET_CURRENT_WEATHER =
       "/api/coordinates?latitude=44.34?longitude=10.99";
   public static final String GET_WEATHER_BASED_ON_CITY = "/api?city=brasov";
-  public static final String CITY_REQUEST_PARAM = "city";
 
   // Archunit
 
@@ -34,4 +33,21 @@ public class TestConstants {
 
   public static final String RETRYABLE_RESPONSE_EXCEPTION_MESSAGE =
       "Service unavailable at the moment, please try again later.";
+
+  // Validation messages
+
+  public static final String INVALID_WEATHER_DATA_NAME =
+      "Constraint validation: weatherData.name cannot be null or empty.";
+  public static final String INVALID_WEATHER_DATA_WEATHER_DESCRIPTION =
+      "Constraint validation: weatherData.weather.description cannot be null or empty.";
+  public static final String INVALID_WEATHER_DATA_MAIN =
+      "Constraint validation: weatherData.weather.main cannot be null or empty.";
+  public static final String INVALID_WEATHER_DATA_MAIN_HUMIDITY =
+      "Constraint validation: weatherData.main.humidity cannot be null or empty.";
+  public static final String INVALID_WEATHER_DATA_MAIN_PRESSURE =
+      "Constraint validation: weatherData.main.pressure cannot be null or empty.";
+  public static final String INVALID_WEATHER_DATA_TIMEZONE =
+      "Constraint validation: weatherData.timeZone cannot be null or empty.";
+  public static final String INVALID_WEATHER_DATA_WIND_WINDSPEED =
+      "Constraint validation: weatherData.wind.windSpeed cannot be less or equal with 0.";
 }
