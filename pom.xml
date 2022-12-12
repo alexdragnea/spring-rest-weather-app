@@ -139,6 +139,7 @@
                                     <element>CLASS</element>
                                     <excludes>
                                         <exclude>net.dg.springrestweather.model.*</exclude>
+                                        <exclude>net.dg.springrestweather.model.owm.*</exclude>
                                         <exclude>net.dg.springrestweather.SpringRestWeatherApplication</exclude>
                                         <exclude>net.dg.springrestweather.config.*</exclude>
                                     </excludes>
