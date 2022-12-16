@@ -1,5 +1,10 @@
 package net.dg.springrestweather.rest;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.service.converter.OwmResponseConverterService;
@@ -14,11 +19,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(OpenWeatherMapController.class)
 class OpenWeatherMapControllerTest {
@@ -54,10 +54,10 @@ class OpenWeatherMapControllerTest {
         .andExpect(jsonPath("$.temp").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.temp_min").isNotEmpty())
         .andExpect(jsonPath("$.temp_min").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.temp_max").isNotEmpty())
-            .andExpect(jsonPath("$.temp_max").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.feels_like").isNotEmpty())
-            .andExpect(jsonPath("$.feels_like").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_max").isNotEmpty())
+        .andExpect(jsonPath("$.temp_max").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.feels_like").isNotEmpty())
+        .andExpect(jsonPath("$.feels_like").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.windSpeed").isNotEmpty())
         .andExpect(jsonPath("$.windSpeed").value(TestConstants.DATA_DOUBLE))
         .andExpect(jsonPath("$.pressure").isNotEmpty())
@@ -66,8 +66,8 @@ class OpenWeatherMapControllerTest {
         .andExpect(jsonPath("$.humidity").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.desc").isNotEmpty())
         .andExpect(jsonPath("$.desc").value(TestConstants.TEST))
-            .andExpect(jsonPath("$.code").isNotEmpty())
-            .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
+        .andExpect(jsonPath("$.code").isNotEmpty())
+        .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
   }
 
   @Test
@@ -84,29 +84,29 @@ class OpenWeatherMapControllerTest {
             MockMvcRequestBuilders.get(TestConstants.GET_WEATHER_BASED_ON_CITY)
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-            .andExpect(jsonPath("$.city").isNotEmpty())
-            .andExpect(jsonPath("$.city").value(TestConstants.CITY))
-            .andExpect(jsonPath("$.timeZone").isNotEmpty())
-            .andExpect(jsonPath("$.timeZone").value(TestConstants.TEST))
-            .andExpect(jsonPath("$.forecast").isNotEmpty())
-            .andExpect(jsonPath("$.forecast").value(TestConstants.TEST))
-            .andExpect(jsonPath("$.temp").isNotEmpty())
-            .andExpect(jsonPath("$.temp").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.temp_min").isNotEmpty())
-            .andExpect(jsonPath("$.temp_min").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.temp_max").isNotEmpty())
-            .andExpect(jsonPath("$.temp_max").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.feels_like").isNotEmpty())
-            .andExpect(jsonPath("$.feels_like").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.windSpeed").isNotEmpty())
-            .andExpect(jsonPath("$.windSpeed").value(TestConstants.DATA_DOUBLE))
-            .andExpect(jsonPath("$.pressure").isNotEmpty())
-            .andExpect(jsonPath("$.pressure").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.humidity").isNotEmpty())
-            .andExpect(jsonPath("$.humidity").value(TestConstants.DATA_INTEGER))
-            .andExpect(jsonPath("$.desc").isNotEmpty())
-            .andExpect(jsonPath("$.desc").value(TestConstants.TEST))
-            .andExpect(jsonPath("$.code").isNotEmpty())
-            .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
+        .andExpect(jsonPath("$.city").isNotEmpty())
+        .andExpect(jsonPath("$.city").value(TestConstants.CITY))
+        .andExpect(jsonPath("$.timeZone").isNotEmpty())
+        .andExpect(jsonPath("$.timeZone").value(TestConstants.TEST))
+        .andExpect(jsonPath("$.forecast").isNotEmpty())
+        .andExpect(jsonPath("$.forecast").value(TestConstants.TEST))
+        .andExpect(jsonPath("$.temp").isNotEmpty())
+        .andExpect(jsonPath("$.temp").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_min").isNotEmpty())
+        .andExpect(jsonPath("$.temp_min").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_max").isNotEmpty())
+        .andExpect(jsonPath("$.temp_max").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.feels_like").isNotEmpty())
+        .andExpect(jsonPath("$.feels_like").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.windSpeed").isNotEmpty())
+        .andExpect(jsonPath("$.windSpeed").value(TestConstants.DATA_DOUBLE))
+        .andExpect(jsonPath("$.pressure").isNotEmpty())
+        .andExpect(jsonPath("$.pressure").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.humidity").isNotEmpty())
+        .andExpect(jsonPath("$.humidity").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.desc").isNotEmpty())
+        .andExpect(jsonPath("$.desc").value(TestConstants.TEST))
+        .andExpect(jsonPath("$.code").isNotEmpty())
+        .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
   }
 }

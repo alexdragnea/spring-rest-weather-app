@@ -51,13 +51,13 @@ public class TestConstants {
   public static final String INVALID_WEATHER_DATA_WIND_WINDSPEED =
       "Constraint validation: weatherData.wind.windSpeed cannot be less or equal with 0.";
   public static final String INVALID_WEATHER_DATA_TEMP =
-          "Constraint validation: weatherData.main.temp cannot be null or empty.";
+      "Constraint validation: weatherData.main.temp cannot be null or empty.";
   public static final String INVALID_WEATHER_DATA_TEMP_MAX =
-          "Constraint validation: weatherData.main.tempMax cannot be null or empty.";
+      "Constraint validation: weatherData.main.tempMax cannot be null or empty.";
   public static final String INVALID_WEATHER_DATA_TEMP_MIN =
-          "Constraint validation: weatherData.main.tempMin cannot be null or empty.";
+      "Constraint validation: weatherData.main.tempMin cannot be null or empty.";
   public static final String INVALID_WEATHER_DATA_FEELS_LIKE =
-          "Constraint validation: weatherData.main.feelsLike cannot be null or empty.";
+      "Constraint validation: weatherData.main.feelsLike cannot be null or empty.";
   public static final String INVALID_WEATHER_DATA_CODE =
-          "Constraint validation: weatherData.code cannot be null or empty.";
+      "Constraint validation: weatherData.code cannot be null or empty.";
 }

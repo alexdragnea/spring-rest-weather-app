@@ -1,10 +1,9 @@
 package net.dg.springrestweather.service.validation;
 
+import java.util.Objects;
+import javax.validation.ValidationException;
 import net.dg.springrestweather.model.owm.WeatherData;
 import org.springframework.stereotype.Service;
-
-import javax.validation.ValidationException;
-import java.util.Objects;
 
 @Service
 public class OwmValidationService {
@@ -67,8 +66,7 @@ public class OwmValidationService {
 
     if (Objects.isNull(weatherData.getCod())) {
       throw new ValidationException(
-              String.format(
-                      VALIDATION_FORMAT, "weatherData.code cannot be null or empty"));
+          String.format(VALIDATION_FORMAT, "weatherData.code cannot be null or empty"));
     }
   }
 }

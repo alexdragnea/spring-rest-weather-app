@@ -62,7 +62,7 @@ class OwmValidationServiceTest {
     main.setTemp(null);
     weatherData.setMain(main);
     Throwable ex =
-            assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
     assertEquals(TestConstants.INVALID_WEATHER_DATA_TEMP, ex.getMessage());
   }
 
@@ -75,7 +75,7 @@ class OwmValidationServiceTest {
     main.setTempMax(null);
     weatherData.setMain(main);
     Throwable ex =
-            assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
     assertEquals(TestConstants.INVALID_WEATHER_DATA_TEMP_MAX, ex.getMessage());
   }
 
@@ -88,7 +88,7 @@ class OwmValidationServiceTest {
     main.setTempMin(null);
     weatherData.setMain(main);
     Throwable ex =
-            assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
     assertEquals(TestConstants.INVALID_WEATHER_DATA_TEMP_MIN, ex.getMessage());
   }
 
@@ -101,7 +101,7 @@ class OwmValidationServiceTest {
     main.setFeelsLike(null);
     weatherData.setMain(main);
     Throwable ex =
-            assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
     assertEquals(TestConstants.INVALID_WEATHER_DATA_FEELS_LIKE, ex.getMessage());
   }
 
@@ -154,7 +154,7 @@ class OwmValidationServiceTest {
     weatherData.setCod(null);
 
     Throwable ex =
-            assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
+        assertThrows(ValidationException.class, () -> owmValidationService.validate(weatherData));
     assertEquals(TestConstants.INVALID_WEATHER_DATA_CODE, ex.getMessage());
   }
 
