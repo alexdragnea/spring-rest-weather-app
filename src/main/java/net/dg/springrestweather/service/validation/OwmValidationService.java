@@ -33,6 +33,26 @@ public class OwmValidationService {
       throw new ValidationException(
           String.format(VALIDATION_FORMAT, "weatherData.main.pressure cannot be null or empty"));
     }
+
+    if (Objects.isNull(weatherData.getMain().getTemp())) {
+      throw new ValidationException(
+          String.format(VALIDATION_FORMAT, "weatherData.main.temp cannot be null or empty"));
+    }
+
+    if (Objects.isNull(weatherData.getMain().getTempMax())) {
+      throw new ValidationException(
+          String.format(VALIDATION_FORMAT, "weatherData.main.tempMax cannot be null or empty"));
+    }
+
+    if (Objects.isNull(weatherData.getMain().getTempMin())) {
+      throw new ValidationException(
+          String.format(VALIDATION_FORMAT, "weatherData.main.tempMin cannot be null or empty"));
+    }
+
+    if (Objects.isNull(weatherData.getMain().getFeelsLike())) {
+      throw new ValidationException(
+          String.format(VALIDATION_FORMAT, "weatherData.main.feelsLike cannot be null or empty"));
+    }
     if (Objects.isNull(weatherData.getMain().getHumidity())) {
       throw new ValidationException(
           String.format(VALIDATION_FORMAT, "weatherData.main.humidity cannot be null or empty"));
@@ -42,6 +62,11 @@ public class OwmValidationService {
       throw new ValidationException(
           String.format(
               VALIDATION_FORMAT, "weatherData.weather.description cannot be null or empty"));
+    }
+
+    if (Objects.isNull(weatherData.getCod())) {
+      throw new ValidationException(
+          String.format(VALIDATION_FORMAT, "weatherData.code cannot be null or empty"));
     }
   }
 }

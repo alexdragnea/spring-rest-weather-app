@@ -10,11 +10,15 @@ public class WeatherOwmObjectMother {
         .city(TestConstants.CITY)
         .timeZone(TestConstants.TEST)
         .forecast(TestConstants.TEST)
-        .temperature(TestConstants.DATA_INTEGER)
+        .feelsLike(TestConstants.DATA_DOUBLE)
+        .temp(TestConstants.DATA_DOUBLE)
+        .tempMax(TestConstants.DATA_DOUBLE)
+        .tempMin(TestConstants.DATA_DOUBLE)
         .windSpeed(TestConstants.DATA_DOUBLE)
         .pressure(TestConstants.DATA_INTEGER)
         .humidity(TestConstants.DATA_INTEGER)
-        .description(TestConstants.TEST)
+        .desc(TestConstants.TEST)
+        .code(TestConstants.DATA_INTEGER)
         .build();
   }
 }

@@ -30,13 +30,14 @@ class OwmConvertedResponseConverterServiceTest {
                 String.valueOf(TestConstants.DATA_INTEGER),
                 OwmConvertedResponseConverted.getTimeZone()),
         () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getForecast()),
-        () ->
-            assertEquals(
-                TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getTemperature()),
+        () -> assertEquals(TestConstants.DATA_DOUBLE, OwmConvertedResponseConverted.getTemp()),
+        () -> assertEquals(TestConstants.DATA_DOUBLE, OwmConvertedResponseConverted.getTempMax()),
+        () -> assertEquals(TestConstants.DATA_DOUBLE, OwmConvertedResponseConverted.getTempMin()),
+        () -> assertEquals(TestConstants.DATA_DOUBLE, OwmConvertedResponseConverted.getFeelsLike()),
         () -> assertEquals(TestConstants.DATA_DOUBLE, OwmConvertedResponseConverted.getWindSpeed()),
         () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getForecast()),
         () -> assertEquals(TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getPressure()),
         () -> assertEquals(TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getHumidity()),
-        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getDescription()));
+        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getDesc()));
   }
 }

@@ -50,16 +50,24 @@ class OpenWeatherMapControllerTest {
         .andExpect(jsonPath("$.timeZone").value(TestConstants.TEST))
         .andExpect(jsonPath("$.forecast").isNotEmpty())
         .andExpect(jsonPath("$.forecast").value(TestConstants.TEST))
-        .andExpect(jsonPath("$.temperature").isNotEmpty())
-        .andExpect(jsonPath("$.temperature").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp").isNotEmpty())
+        .andExpect(jsonPath("$.temp").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_min").isNotEmpty())
+        .andExpect(jsonPath("$.temp_min").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_max").isNotEmpty())
+        .andExpect(jsonPath("$.temp_max").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.feels_like").isNotEmpty())
+        .andExpect(jsonPath("$.feels_like").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.windSpeed").isNotEmpty())
         .andExpect(jsonPath("$.windSpeed").value(TestConstants.DATA_DOUBLE))
         .andExpect(jsonPath("$.pressure").isNotEmpty())
         .andExpect(jsonPath("$.pressure").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.humidity").isNotEmpty())
         .andExpect(jsonPath("$.humidity").value(TestConstants.DATA_INTEGER))
-        .andExpect(jsonPath("$.description").isNotEmpty())
-        .andExpect(jsonPath("$.description").value(TestConstants.TEST));
+        .andExpect(jsonPath("$.desc").isNotEmpty())
+        .andExpect(jsonPath("$.desc").value(TestConstants.TEST))
+        .andExpect(jsonPath("$.code").isNotEmpty())
+        .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
   }
 
   @Test
@@ -82,15 +90,23 @@ class OpenWeatherMapControllerTest {
         .andExpect(jsonPath("$.timeZone").value(TestConstants.TEST))
         .andExpect(jsonPath("$.forecast").isNotEmpty())
         .andExpect(jsonPath("$.forecast").value(TestConstants.TEST))
-        .andExpect(jsonPath("$.temperature").isNotEmpty())
-        .andExpect(jsonPath("$.temperature").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp").isNotEmpty())
+        .andExpect(jsonPath("$.temp").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_min").isNotEmpty())
+        .andExpect(jsonPath("$.temp_min").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.temp_max").isNotEmpty())
+        .andExpect(jsonPath("$.temp_max").value(TestConstants.DATA_INTEGER))
+        .andExpect(jsonPath("$.feels_like").isNotEmpty())
+        .andExpect(jsonPath("$.feels_like").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.windSpeed").isNotEmpty())
         .andExpect(jsonPath("$.windSpeed").value(TestConstants.DATA_DOUBLE))
         .andExpect(jsonPath("$.pressure").isNotEmpty())
         .andExpect(jsonPath("$.pressure").value(TestConstants.DATA_INTEGER))
         .andExpect(jsonPath("$.humidity").isNotEmpty())
         .andExpect(jsonPath("$.humidity").value(TestConstants.DATA_INTEGER))
-        .andExpect(jsonPath("$.description").isNotEmpty())
-        .andExpect(jsonPath("$.description").value(TestConstants.TEST));
+        .andExpect(jsonPath("$.desc").isNotEmpty())
+        .andExpect(jsonPath("$.desc").value(TestConstants.TEST))
+        .andExpect(jsonPath("$.code").isNotEmpty())
+        .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
   }
 }
