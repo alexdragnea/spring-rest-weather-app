@@ -21,11 +21,15 @@ public class OwmResponseConverterService {
         .city(weatherData.getName())
         .timeZone(String.valueOf(weatherData.getTimezone()))
         .forecast(weatherData.getWeather().get(0).getMain())
-        .temperature((int) (temperature))
+        .temp(weatherData.getMain().getTemp())
+        .tempMax(weatherData.getMain().getTempMax())
+        .tempMin(weatherData.getMain().getTempMin())
+        .feelsLike(weatherData.getMain().getFeelsLike())
         .windSpeed(weatherData.getWind().getSpeed())
         .pressure(weatherData.getMain().getPressure())
         .humidity(weatherData.getMain().getHumidity())
-        .description(weatherData.getWeather().get(0).getDescription())
+        .desc(weatherData.getWeather().get(0).getMain())
+        .code(weatherData.getCod())
         .build();
   }
 }
