@@ -1,9 +1,12 @@
 package net.dg.springrestweather.rest;
 
+import javax.validation.ValidationException;
 import lombok.AllArgsConstructor;
 import net.dg.springrestweather.model.thingspeak.ThingSpeakConvertedResponse;
+import net.dg.springrestweather.model.thingspeak.ThingSpeakResponse;
 import net.dg.springrestweather.service.converter.ThingSpeakResponseConverterService;
 import net.dg.springrestweather.service.impl.ThingSpeakServiceImpl;
+import net.dg.springrestweather.service.validation.ThingSpeakValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +25,22 @@ public class ThingSpeakController {
 
   private final ThingSpeakServiceImpl thingSpeakService;
   private final ThingSpeakResponseConverterService thingSpeakResponseConverterService;
+  private final ThingSpeakValidationService thingSpeakValidationService;
 
   @GetMapping(value = "/data")
   public ResponseEntity<ThingSpeakConvertedResponse> getData() {
 
-    return ResponseEntity.ok(
-        thingSpeakResponseConverterService.convertThingSpeakResponse(thingSpeakService.getData()));
+    ThingSpeakResponse thingSpeakResponse = thingSpeakService.getData();
+
+    try {
+
+      thingSpeakValidationService.validate(thingSpeakResponse);
+      return ResponseEntity.ok(
+          thingSpeakResponseConverterService.convertThingSpeakResponse(thingSpeakResponse));
+    } catch (ValidationException exception) {
+
+      LOGGER.info(exception.getMessage());
+      throw new ValidationException(exception.getMessage());
+    }
   }
 }

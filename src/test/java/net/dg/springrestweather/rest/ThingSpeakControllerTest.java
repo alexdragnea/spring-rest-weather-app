@@ -1,14 +1,17 @@
 package net.dg.springrestweather.rest;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import javax.validation.ValidationException;
 import net.dg.springrestweather.client.thingspeak.ThingSpeakClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.service.converter.ThingSpeakResponseConverterService;
 import net.dg.springrestweather.service.impl.ThingSpeakServiceImpl;
+import net.dg.springrestweather.service.validation.ThingSpeakValidationService;
 import net.dg.springrestweather.utility.ThingSpeakConvertedResponseObjectMother;
 import net.dg.springrestweather.utility.ThingSpeakObjectMother;
 import org.junit.jupiter.api.Test;
@@ -27,6 +30,7 @@ class ThingSpeakControllerTest {
   @MockBean private ThingSpeakClient thingSpeakClient;
   @MockBean private ThingSpeakServiceImpl thingSpeakService;
   @MockBean private ThingSpeakResponseConverterService thingSpeakResponseConverterService;
+  @MockBean private ThingSpeakValidationService thingSpeakValidationService;
 
   @Test
   void testGetThingSpeakData() throws Exception {
@@ -48,5 +52,22 @@ class ThingSpeakControllerTest {
         .andExpect(jsonPath("$.humidity").isNotEmpty())
         .andExpect(jsonPath("$.humidity").value(TestConstants.TEST))
         .andExpect(jsonPath("$.created_at").isNotEmpty());
+  }
+
+  @Test
+  void testGetThingSpeakDataWillCatchException() throws Exception {
+
+    when(thingSpeakService.getData()).thenReturn(ThingSpeakObjectMother.buildThingSpeakResponse());
+
+    when(thingSpeakResponseConverterService.convertThingSpeakResponse(any()))
+        .thenReturn(ThingSpeakConvertedResponseObjectMother.buildConvertedResponse());
+
+    doThrow(ValidationException.class).when(thingSpeakValidationService).validate(any());
+
+    mockMvc
+        .perform(
+            MockMvcRequestBuilders.get(TestConstants.GET_THING_SPEAK_DATA)
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isInternalServerError());
   }
 }
