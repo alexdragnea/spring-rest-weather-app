@@ -1,10 +1,12 @@
 package net.dg.springrestweather.rest;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import javax.validation.ValidationException;
 import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
 import net.dg.springrestweather.constants.TestConstants;
 import net.dg.springrestweather.service.converter.OwmResponseConverterService;
@@ -27,7 +29,7 @@ class OpenWeatherMapControllerTest {
 
   @MockBean OpenWeatherMapClient openWeatherMapClient;
   @MockBean OpenWeatherMapServiceImpl openWeatherService;
-  @MockBean OwmResponseConverterService OWMResponseConverterService;
+  @MockBean OwmResponseConverterService owmResponseConverterService;
   @MockBean OwmValidationService owmValidationService;
 
   @Test
@@ -36,7 +38,7 @@ class OpenWeatherMapControllerTest {
     when(openWeatherService.getWeatherBasedOnCoordinates(any(), any()))
         .thenReturn(WeatherDataObjectMother.buildWeather());
 
-    when(OWMResponseConverterService.convertOWMResponse(any()))
+    when(owmResponseConverterService.convertOWMResponse(any()))
         .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
 
     mockMvc
@@ -76,7 +78,7 @@ class OpenWeatherMapControllerTest {
     when(openWeatherService.getWeatherByCity(any()))
         .thenReturn(WeatherDataObjectMother.buildWeather());
 
-    when(OWMResponseConverterService.convertOWMResponse(any()))
+    when(owmResponseConverterService.convertOWMResponse(any()))
         .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
 
     mockMvc
@@ -108,5 +110,23 @@ class OpenWeatherMapControllerTest {
         .andExpect(jsonPath("$.desc").value(TestConstants.TEST))
         .andExpect(jsonPath("$.code").isNotEmpty())
         .andExpect(jsonPath("$.code").value(TestConstants.DATA_INTEGER));
+  }
+
+  @Test
+  void getWeatherBasedOnCityWillCatchException() throws Exception {
+
+    when(openWeatherService.getWeatherByCity(any()))
+        .thenReturn(WeatherDataObjectMother.buildWeather());
+
+    when(owmResponseConverterService.convertOWMResponse(any()))
+        .thenReturn(WeatherOwmObjectMother.buildWeatherOWM());
+
+    doThrow(ValidationException.class).when(owmValidationService).validate(any());
+
+    mockMvc
+        .perform(
+            MockMvcRequestBuilders.get(TestConstants.GET_WEATHER_BASED_ON_CITY)
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isInternalServerError());
   }
 }

@@ -63,4 +63,16 @@ public class TestConstants {
       "Constraint validation: weatherData.main.feelsLike cannot be null or empty.";
   public static final String INVALID_WEATHER_DATA_CODE =
       "Constraint validation: weatherData.code cannot be null or empty.";
+
+  public static final String INVALID_THING_SPEAK_OBJECT =
+      "Constraint validation: thingSpeakResponse cannot be null or empty.";
+  public static final String INVALID_THING_SPEAK_FIELD_1 =
+      "Constraint validation: thingSpeakResponse.channel.field1 cannot be null or empty.";
+  public static final String INVALID_THING_SPEAK_FIELD_2 =
+      "Constraint validation: thingSpeakResponse.channel.field2 cannot be null or empty.";
+  public static final String INVALID_THING_SPEAK_FIELD_3 =
+      "Constraint validation: thingSpeakResponse.channel.field3 cannot be null or empty.";
+
+  public static final String INVALID_THING_SPEAK_CREATED_AT =
+      "Constraint validation: thingSpeakResponse.feeds.createdAt cannot be null or empty.";
 }
