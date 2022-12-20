@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.model.OwmConvertedResponse;
+import net.dg.springrestweather.model.owm.OwmConvertedResponse;
 import net.dg.springrestweather.utility.WeatherDataObjectMother;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -38,6 +38,7 @@ class OwmConvertedResponseConverterServiceTest {
         () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getForecast()),
         () -> assertEquals(TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getPressure()),
         () -> assertEquals(TestConstants.DATA_INTEGER, OwmConvertedResponseConverted.getHumidity()),
-        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getDesc()));
+        () -> assertEquals(TestConstants.TEST, OwmConvertedResponseConverted.getDesc()),
+        () -> assertEquals(TestConstants.CODE, OwmConvertedResponseConverted.getCode()));
   }
 }

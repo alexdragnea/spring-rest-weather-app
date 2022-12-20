@@ -10,12 +10,15 @@ public class TestConstants {
   public static final Double DATA_DOUBLE = 25.0;
   public static final Integer DATA_INTEGER = 25;
   public static final String CITY = "Brasov";
+  public static final Integer CODE = 200;
 
   // Constants for endpoints
-  public static final String BASE_ENDPOINT_PATH = "/weather";
+  public static final String OWM_BASE_ENDPOINT_PATH = "/weather";
+  public static final String THING_SPEAK_BASE_ENDPOINT_PATH = "/feeds.json";
   public static final String GET_CURRENT_WEATHER =
       "/api/coordinates?latitude=44.34?longitude=10.99";
   public static final String GET_WEATHER_BASED_ON_CITY = "/api?city=brasov";
+  public static final String GET_THING_SPEAK_DATA = "/thingspeak/data";
 
   // Archunit
 
