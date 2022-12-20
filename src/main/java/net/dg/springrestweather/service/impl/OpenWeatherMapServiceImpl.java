@@ -15,7 +15,7 @@ public class OpenWeatherMapServiceImpl implements OpenWeatherMapService {
   @Value("${weather.measurementType}")
   String measurementType;
 
-  OpenWeatherMapClient openWeatherMapClient;
+  private OpenWeatherMapClient openWeatherMapClient;
 
   public OpenWeatherMapServiceImpl(OpenWeatherMapClient openWeatherMapClient) {
     this.openWeatherMapClient = openWeatherMapClient;

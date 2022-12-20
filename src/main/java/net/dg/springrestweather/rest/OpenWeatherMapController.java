@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import javax.validation.ValidationException;
 import lombok.AllArgsConstructor;
-import net.dg.springrestweather.model.OwmConvertedResponse;
+import net.dg.springrestweather.model.owm.OwmConvertedResponse;
 import net.dg.springrestweather.model.owm.WeatherData;
 import net.dg.springrestweather.service.converter.OwmResponseConverterService;
 import net.dg.springrestweather.service.impl.OpenWeatherMapServiceImpl;

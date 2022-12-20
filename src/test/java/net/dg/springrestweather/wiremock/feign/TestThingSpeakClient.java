@@ -10,10 +10,11 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import net.dg.springrestweather.client.errordecoder.FeignErrorDecoder;
-import net.dg.springrestweather.client.owm.OpenWeatherMapClient;
+import net.dg.springrestweather.client.thingspeak.ThingSpeakClient;
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.model.owm.WeatherData;
-import net.dg.springrestweather.utility.WeatherDataObjectMother;
+import net.dg.springrestweather.model.thingspeak.ThingSpeakResponse;
+import net.dg.springrestweather.service.impl.ThingSpeakServiceImpl;
+import net.dg.springrestweather.utility.ThingSpeakObjectMother;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-class TestOpenWeaterMapClient {
+public class TestThingSpeakClient {
 
   @Autowired MockMvc mockMvc;
 
@@ -41,9 +42,11 @@ class TestOpenWeaterMapClient {
 
   @Autowired private ObjectMapper objectMapper;
 
-  @Autowired private OpenWeatherMapClient openWeatherMapClient;
+  @Autowired private ThingSpeakClient thingSpeakClient;
 
   @Autowired private FeignErrorDecoder feignErrorDecoder;
+
+  @Autowired private ThingSpeakServiceImpl thingSpeakService;
 
   @BeforeAll
   static void initMockServer() {
@@ -63,75 +66,44 @@ class TestOpenWeaterMapClient {
   }
 
   @Test
-  void testCallGetWeatherByLatAndLon() throws Exception {
+  void testCallGetThingSpeakData() throws Exception {
     happyFlowStub();
 
-    mockMvc.perform(get(TestConstants.GET_CURRENT_WEATHER)).andExpect(status().isOk());
+    mockMvc.perform(get(TestConstants.GET_THING_SPEAK_DATA)).andExpect(status().isOk());
 
-    verify(getRequestedFor(urlPathEqualTo(TestConstants.OWM_BASE_ENDPOINT_PATH)));
+    verify(getRequestedFor(urlPathEqualTo(TestConstants.THING_SPEAK_BASE_ENDPOINT_PATH)));
   }
 
   @Test
-  void testCallGetWeatherByCity() throws Exception {
-    happyFlowStub();
-
-    mockMvc.perform(get(TestConstants.GET_WEATHER_BASED_ON_CITY)).andExpect(status().isOk());
-
-    verify(getRequestedFor(urlPathEqualTo(TestConstants.OWM_BASE_ENDPOINT_PATH)));
-  }
-
-  @Test
-  void testCallGetWeatherByCityRetryingFor408Status() throws Exception {
+  void testCallGetThingSpeakDataRetryFor408Status() throws Exception {
     timeoutStub();
 
     mockMvc
-        .perform(get(TestConstants.GET_WEATHER_BASED_ON_CITY))
+        .perform(get(TestConstants.GET_THING_SPEAK_DATA))
         .andExpect(status().isServiceUnavailable());
 
-    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.OWM_BASE_ENDPOINT_PATH)));
+    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.THING_SPEAK_BASE_ENDPOINT_PATH)));
   }
 
   @Test
-  void testCallGetWeatherByCityRetryingFor503Status() throws Exception {
+  void testCallGetThingSpeakDataRetryFor503Status() throws Exception {
     serviceUnavailableStub();
 
     mockMvc
-        .perform(get(TestConstants.GET_WEATHER_BASED_ON_CITY))
+        .perform(get(TestConstants.GET_THING_SPEAK_DATA))
         .andExpect(status().isServiceUnavailable());
 
-    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.OWM_BASE_ENDPOINT_PATH)));
-  }
-
-  @Test
-  void testCallGetWeatherByCoordinatesRetryingFor408Status() throws Exception {
-    serviceUnavailableStub();
-
-    mockMvc
-        .perform(get(TestConstants.GET_CURRENT_WEATHER))
-        .andExpect(status().isServiceUnavailable());
-
-    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.OWM_BASE_ENDPOINT_PATH)));
-  }
-
-  @Test
-  void testCallGetWeatherByCoordinatesRetryingFor503Status() throws Exception {
-    serviceUnavailableStub();
-
-    mockMvc
-        .perform(get(TestConstants.GET_CURRENT_WEATHER))
-        .andExpect(status().isServiceUnavailable());
-
-    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.OWM_BASE_ENDPOINT_PATH)));
+    verify(4, getRequestedFor(urlPathEqualTo(TestConstants.THING_SPEAK_BASE_ENDPOINT_PATH)));
   }
 
   void happyFlowStub() {
 
-    final WeatherData weatherData = WeatherDataObjectMother.buildWeather();
+    final ThingSpeakResponse thingSpeakResponse = ThingSpeakObjectMother.buildThingSpeakResponse();
 
-    JsonNode node = objectMapper.convertValue(weatherData, JsonNode.class);
+    JsonNode node = objectMapper.convertValue(thingSpeakResponse, JsonNode.class);
 
     stubFor(
-        WireMock.get(urlPathMatching(TestConstants.OWM_BASE_ENDPOINT_PATH))
+        WireMock.get(urlPathMatching(TestConstants.THING_SPEAK_BASE_ENDPOINT_PATH))
             .willReturn(
                 aResponse()
                     .withStatus(HttpStatus.OK.value())
@@ -142,7 +114,7 @@ class TestOpenWeaterMapClient {
   void timeoutStub() {
 
     stubFor(
-        WireMock.get(urlPathMatching(TestConstants.OWM_BASE_ENDPOINT_PATH))
+        WireMock.get(urlPathMatching(TestConstants.THING_SPEAK_BASE_ENDPOINT_PATH))
             .willReturn(
                 aResponse()
                     .withStatus(HttpStatus.REQUEST_TIMEOUT.value())
@@ -152,7 +124,7 @@ class TestOpenWeaterMapClient {
   void serviceUnavailableStub() {
 
     stubFor(
-        WireMock.get(urlPathMatching(TestConstants.OWM_BASE_ENDPOINT_PATH))
+        WireMock.get(urlPathMatching(TestConstants.THING_SPEAK_BASE_ENDPOINT_PATH))
             .willReturn(
                 aResponse()
                     .withStatus(HttpStatus.SERVICE_UNAVAILABLE.value())

@@ -1,7 +1,7 @@
 package net.dg.springrestweather.utility;
 
 import net.dg.springrestweather.constants.TestConstants;
-import net.dg.springrestweather.model.OwmConvertedResponse;
+import net.dg.springrestweather.model.owm.OwmConvertedResponse;
 
 public class WeatherOwmObjectMother {
 

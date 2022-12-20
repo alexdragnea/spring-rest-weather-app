@@ -1,6 +1,6 @@
 package net.dg.springrestweather.service.converter;
 
-import net.dg.springrestweather.model.OwmConvertedResponse;
+import net.dg.springrestweather.model.owm.OwmConvertedResponse;
 import net.dg.springrestweather.model.owm.WeatherData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

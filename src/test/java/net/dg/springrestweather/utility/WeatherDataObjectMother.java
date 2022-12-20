@@ -20,7 +20,7 @@ public class WeatherDataObjectMother {
         .timezone(TestConstants.DATA_INTEGER)
         .id(TestConstants.ID)
         .name(TestConstants.CITY)
-        .cod(TestConstants.DATA_INTEGER)
+        .cod(TestConstants.CODE)
         .build();
   }
 
