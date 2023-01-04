@@ -33,9 +33,18 @@ class ThingSpeakResponseConverterServiceTest {
     Assertions.assertAll(
         () -> assertNotNull(thingSpeakConvertedResponse),
         () -> assertEquals(TestConstants.CODE, thingSpeakConvertedResponse.getCode()),
-        () -> assertEquals(df.format(Double.valueOf(TestConstants.DATA_DOUBLE)), thingSpeakConvertedResponse.getHumidity()),
-        () -> assertEquals(df.format(Double.valueOf(TestConstants.DATA_DOUBLE)), thingSpeakConvertedResponse.getPressure()),
-        () -> assertEquals(String.valueOf(TestConstants.DATA_DOUBLE), thingSpeakConvertedResponse.getTemperature()),
+        () ->
+            assertEquals(
+                df.format(Double.valueOf(TestConstants.DATA_DOUBLE)),
+                thingSpeakConvertedResponse.getHumidity()),
+        () ->
+            assertEquals(
+                df.format(Double.valueOf(TestConstants.DATA_DOUBLE)),
+                thingSpeakConvertedResponse.getPressure()),
+        () ->
+            assertEquals(
+                String.valueOf(TestConstants.DATA_DOUBLE),
+                thingSpeakConvertedResponse.getTemperature()),
         () ->
             assertEquals(
                 String.valueOf(dateFormat.format(new Date())),
