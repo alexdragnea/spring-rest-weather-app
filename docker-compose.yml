@@ -4,4 +4,4 @@ services:
     container_name: spring-rest-weather-app
     build: .
     ports:
-      - "8181:8181"
+      - "5000:5000"

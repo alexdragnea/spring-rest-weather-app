@@ -16,9 +16,9 @@ public class ThingSpeakObjectMother {
   public static Channel buildChannel() {
     return Channel.builder()
         .createdAt(new Date())
-        .field1(TestConstants.TEST)
-        .field2(TestConstants.TEST)
-        .field3(TestConstants.TEST)
+        .field1(String.valueOf(TestConstants.DATA_DOUBLE))
+        .field2(String.valueOf(TestConstants.DATA_DOUBLE))
+        .field3(String.valueOf(TestConstants.DATA_DOUBLE))
         .latitude(TestConstants.TEST)
         .longitude(TestConstants.TEST)
         .updatedAt(new Date())
@@ -31,9 +31,9 @@ public class ThingSpeakObjectMother {
     return Feed.builder()
         .createdAt(new Date())
         .entryId(TestConstants.DATA_INTEGER)
-        .field1(TestConstants.TEST)
-        .field2(TestConstants.TEST)
-        .field3(TestConstants.TEST)
+        .field1(String.valueOf(TestConstants.DATA_DOUBLE))
+        .field2(String.valueOf(TestConstants.DATA_DOUBLE))
+        .field3(String.valueOf(TestConstants.DATA_DOUBLE))
         .build();
   }
 }
