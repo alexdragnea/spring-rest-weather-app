@@ -26,8 +26,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       #Run mvn clean install
-      - name: Run Maven Install
-        run: mvn clean install -Dmaven.test.skip
+      - name: Run Maven Install amd Bump Version
+        run: mvn clean install -DbumpMinor -Dmaven.test.skip
   #Test's job
   tests:
     #Depends on test's job

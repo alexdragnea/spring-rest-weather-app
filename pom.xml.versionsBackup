@@ -10,7 +10,7 @@
     </parent>
     <groupId>net.dg</groupId>
     <artifactId>spring-rest-weather</artifactId>
-    <version>2.2.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>spring-rest-weather</name>
     <description>spring-rest-weather</description>
     <properties>
@@ -257,7 +257,7 @@
                                 <goals>
                                     <goal>set</goal>
                                 </goals>
-                                <phase>install</phase>
+                                <phase>validate</phase>
                                 <configuration>
                                     <newVersion>${parsedVersion.majorVersion}.${parsedVersion.nextMinorVersion}.0</newVersion>
                                 </configuration>
