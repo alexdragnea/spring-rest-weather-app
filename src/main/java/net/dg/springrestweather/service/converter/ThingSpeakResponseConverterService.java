@@ -1,6 +1,7 @@
 package net.dg.springrestweather.service.converter;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class ThingSpeakResponseConverterService {
   private static final Logger LOGGER =
       LoggerFactory.getLogger(ThingSpeakResponseConverterService.class);
 
+  private static final DecimalFormat df = new DecimalFormat("0.00");
+
   public ThingSpeakConvertedResponse convertThingSpeakResponse(
       ThingSpeakResponse thingSpeakResponse) {
 
@@ -31,8 +34,8 @@ public class ThingSpeakResponseConverterService {
     return ThingSpeakConvertedResponse.builder()
         .createdAt(dateFormat.format(thingSpeakResponse.getFeeds().get(0).getCreatedAt()))
         .temperature(feedList.get(0).getField1())
-        .humidity(feedList.get(0).getField2())
-        .pressure(feedList.get(0).getField3())
+        .humidity(df.format(Double.valueOf(feedList.get(0).getField2())))
+        .pressure(df.format(Double.valueOf(feedList.get(0).getField3())))
         .code(200)
         .build();
   }

@@ -7,7 +7,7 @@ public class TestConstants {
   public static final Double LAT = 44.34;
   public static final Double LON = 10.99;
   public static final String TEST = "test";
-  public static final Double DATA_DOUBLE = 25.0;
+  public static final Double DATA_DOUBLE = 25.00;
   public static final Integer DATA_INTEGER = 25;
   public static final String CITY = "Brasov";
   public static final Integer CODE = 200;
