@@ -35,8 +35,6 @@ jobs:
 #        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alexdragnea_spring-rest-weather-app
 #  #Build Jar Job
   build_artifact:
-    #Depends on sonar job
-#    needs: sonar
     name: Build Artifact
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
