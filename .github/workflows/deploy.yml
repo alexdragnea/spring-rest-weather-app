@@ -36,7 +36,7 @@ jobs:
 #  #Build Jar Job
   build_artifact:
     #Depends on sonar job
-    needs: sonar
+#    needs: sonar
     name: Build Artifact
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
   #Deploy's job
   deploy:
     #Depends on build's job
-    needs: build
+    needs: build_artifact
     name: Deploy
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
