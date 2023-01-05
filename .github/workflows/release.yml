@@ -5,7 +5,7 @@ on:
       - release
 
 jobs:
-  #Build Jar Job
+  #Build Jar job
   build_artifact:
     name: Build Artifact
     needs: sonar
