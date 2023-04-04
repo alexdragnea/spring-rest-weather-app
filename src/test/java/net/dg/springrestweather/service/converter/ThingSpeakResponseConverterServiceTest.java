@@ -28,7 +28,7 @@ class ThingSpeakResponseConverterServiceTest {
             ThingSpeakObjectMother.buildThingSpeakResponse());
 
     DecimalFormat df = new DecimalFormat("0.00");
-    DateFormat dateFormat = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
+    DateFormat dateFormat = new SimpleDateFormat("E, dd MMM yyyy hh:mm a");
 
     Assertions.assertAll(
         () -> assertNotNull(thingSpeakConvertedResponse),

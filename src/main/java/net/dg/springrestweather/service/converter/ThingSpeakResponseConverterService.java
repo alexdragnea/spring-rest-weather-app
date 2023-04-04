@@ -29,7 +29,7 @@ public class ThingSpeakResponseConverterService {
 
     List<Feed> feedList = new ArrayList<>();
     feedList = thingSpeakResponse.getFeeds();
-    DateFormat dateFormat = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
+    DateFormat dateFormat = new SimpleDateFormat("E, dd MMM yyyy hh:mm a");
 
     return ThingSpeakConvertedResponse.builder()
         .createdAt(dateFormat.format(thingSpeakResponse.getFeeds().get(0).getCreatedAt()))
