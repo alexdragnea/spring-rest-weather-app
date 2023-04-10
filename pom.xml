@@ -138,11 +138,11 @@
                                 <rule>
                                     <element>CLASS</element>
                                     <excludes>
-                                        <exclude>net.dg.springrestweather.model.*</exclude>
-                                        <exclude>net.dg.springrestweather.model.owm.*</exclude>
-                                        <exclude>net.dg.springrestweather.model.thingspeak.*</exclude>
+                                        <exclude>net.dg.springrestweather.model.*.*</exclude>
+                                        <exclude>net.dg.springrestweather.model.owm.*.*</exclude>
+                                        <exclude>net.dg.springrestweather.model.thingspeak.*.*</exclude>
                                         <exclude>net.dg.springrestweather.SpringRestWeatherApplication</exclude>
-                                        <exclude>net.dg.springrestweather.config.*</exclude>
+                                        <exclude>net.dg.springrestweather.config.*.*</exclude>
                                     </excludes>
                                     <limits>
                                         <limit>
@@ -166,6 +166,15 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>net/dg/springrestweather/model/*</exclude>
+                                <exclude>net/dg/springrestweather/model/owm/*</exclude>
+                                <exclude>net/dg/springrestweather/model/thingspeak/*</exclude>
+                                <exclude>net/dg/springrestweather/SpringRestWeatherApplication*</exclude>
+                                <exclude>net/dg/springrestweather/config/*</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
